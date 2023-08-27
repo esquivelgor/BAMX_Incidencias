@@ -9,11 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ZStack {
+            Color.blue
+                .ignoresSafeArea()
+            Text(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/)
+                .foregroundColor(.white)
+                .font(.system(size: 30))
+
+        }
     }
 }
-
+            
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
