@@ -22,66 +22,45 @@ struct ContentView: View {
                         .buttonStyle(.bordered)
                 }
             } else {
-                //NavigationView{
-                //    VStack(spacing: 30){
-                //        Image("bamx")
-                //            .aspectRatio(contentMode: .fit)
-                //            .frame(width: 250, height: 250, alignment: .center)
-                //            .padding()
-                //
-                //        Text("Iniciar Sesión")
-                //            .fontWeight(.bold)
-                //            .frame(width: 170, height: 40, alignment: .center)
-                //            .background(Color.red)
-                //            .foregroundColor(.white)
-                //            .cornerRadius(100)
-                //
-                //        NavigationLink(
-                //            destination: SplashScreenView(),
-                //            label: {
-                //                Text("Registrarme")
-                //            }
-                //        )
-                //    }
-                //    .navigationTitle("Login")
-                //}                // Show a login screen
-                ZStack {
-                    VStack(alignment: .leading, spacing: 20) {
-                        Spacer()
-                        Text("Log in")
-                            .foregroundColor(.white)
-                            .font(.system(size: 40, weight: .medium, design: .rounded))
-                            .underline()
-
-                        TextField("Username", text: $vm.username)
-                            .textFieldStyle(.roundedBorder)
-                            .textInputAutocapitalization(.never)
-                        SecureField("Password", text: $vm.password)
-                            .textFieldStyle(.roundedBorder)
-                            .textInputAutocapitalization(.never)
-                            .privacySensitive()
-                        HStack {
-                            Spacer()
-                            Button("Forgot password?", action: vm.logPressed)
-                                .tint(.red.opacity(0.80))
-                            Spacer()
-                            Button("Log on",role: .cancel, action: vm.authenticate)
-                                .buttonStyle(.bordered)
-                            Spacer()
+                NavigationView {
+                    ZStack {
+                        Image("bg")
+                            .resizable()
+                            .cornerRadius(20)
+                            .ignoresSafeArea()
+                            .blur(radius: 110)
+                    
+                        VStack(alignment: .center, spacing: 30) {
+                            Image("bamx")
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 250, height: 250, alignment: .center)
+                                .padding()
+                            TextField("Usuario", text: $vm.username)
+                                .textFieldStyle(.roundedBorder)
+                                .textInputAutocapitalization(.never)
+                                .cornerRadius(15)
+                            SecureField("Contraseña", text: $vm.password)
+                                .textFieldStyle(.roundedBorder)
+                                .textInputAutocapitalization(.never)
+                                .privacySensitive()
+                                .cornerRadius(15)
                         }
-                        Spacer()
+                        .alert("No tienes acceso", isPresented: $vm.invalid) {
+                            Button("Dismiss", action: vm.logPressed)
+                        }
+                        .frame(width: 300)
+                        .padding()
                     }
-                    .alert("Access denied", isPresented: $vm.invalid) {
-                        Button("Dismiss", action: vm.logPressed)
-                    }
-                    .frame(width: 300)
-                    .padding()
+                    .transition(.offset(x: 0, y: 850))
+                    
                 }
-                .transition(.offset(x: 0, y: 850))
+                .navigationTitle("Login")
             }
-        }
+        
+    }
+    
 }
-            
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
