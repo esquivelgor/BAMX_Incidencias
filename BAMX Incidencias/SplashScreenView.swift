@@ -15,26 +15,32 @@ struct SplashScreenView: View {
         if isActive {
             ContentView()
         } else {
-            VStack {
+            ZStack{
+                Image("bg")
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                    .zIndex(0)
                 VStack {
-                    Image("bamx")
-                }
-                .scaleEffect(size)
-                .opacity(opacity)
-                .onAppear{
-                    withAnimation(.easeIn(duration: 1.2)){
-                        self.size = 0.9
-                        self.opacity = 1.0
+                    VStack {
+                        Image("bamx")
                     }
+                    .scaleEffect(size)
+                    .opacity(opacity)
+                    .onAppear{
+                        withAnimation(.easeIn(duration: 1.2)){
+                            self.size = 0.9
+                            self.opacity = 1.0
+                        }
+                    }
+                    
                 }
-                
-            }
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    withAnimation{
-                        self.isActive = true                    }
-                }
-            }
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        withAnimation{
+                            self.isActive = true                    }
+                    }
+                }            }
+           
         }
     }
 }

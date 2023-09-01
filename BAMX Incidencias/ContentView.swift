@@ -24,16 +24,16 @@ struct ContentView: View {
             } else {
                 NavigationView {
                     ZStack {
-                        Image("bg")
-                            .resizable()
-                            .cornerRadius(20)
-                            .ignoresSafeArea()
-                            .blur(radius: 110)
+                        //Image("bg")
+                        //    .resizable()
+                        //    .cornerRadius(20)
+                        //    .ignoresSafeArea()
+                        //    .blur(radius: 10)
                     
                         VStack(alignment: .center, spacing: 30) {
                             Image("bamx")
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 250, height: 250, alignment: .center)
+                                .frame(width: 200, height: 300, alignment: .center)
                                 .padding()
                             TextField("Usuario", text: $vm.username)
                                 .textFieldStyle(.roundedBorder)
@@ -43,7 +43,22 @@ struct ContentView: View {
                                 .textFieldStyle(.roundedBorder)
                                 .textInputAutocapitalization(.never)
                                 .privacySensitive()
-                                .cornerRadius(15)
+                            HStack {
+                                Spacer()
+                                Button("Olvide la contrasena", action: vm.logPressed)
+                                    .tint(.red.opacity(0.8))
+                                Spacer()
+                                Button("Log in", role:.cancel,action: vm.authenticate)
+                                    .buttonStyle(.borderedProminent)
+                                    .tint(.red)
+                                Spacer()
+                            }
+                            Spacer()
+                            NavigationLink(destination: RegistrationView(), label: {
+                                Text("Registrarme")
+                                    .foregroundColor(.red)
+                                
+                            })
                         }
                         .alert("No tienes acceso", isPresented: $vm.invalid) {
                             Button("Dismiss", action: vm.logPressed)

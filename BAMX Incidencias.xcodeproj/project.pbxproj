@@ -12,6 +12,7 @@
 		78B719432A9AF21300F3B8F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B719422A9AF21300F3B8F5 /* Assets.xcassets */; };
 		78B719462A9AF21300F3B8F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B719452A9AF21300F3B8F5 /* Preview Assets.xcassets */; };
 		78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0F58B2A9BEE3F00D44B7B /* SplashScreenView.swift */; };
+		BB0736952AA24ADA0037EDA6 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */; };
 		BB2245DE2AA1125D005697D8 /* Content-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2245DD2AA1125D005697D8 /* Content-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +23,7 @@
 		78B719422A9AF21300F3B8F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78B719452A9AF21300F3B8F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		78F0F58B2A9BEE3F00D44B7B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		BB2245DD2AA1125D005697D8 /* Content-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Content-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +59,7 @@
 			children = (
 				78B7193E2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift */,
 				78B719402A9AF21100F3B8F5 /* ContentView.swift */,
+				BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */,
 				BB2245DD2AA1125D005697D8 /* Content-ViewModel.swift */,
 				78F0F58B2A9BEE3F00D44B7B /* SplashScreenView.swift */,
 				78B719422A9AF21300F3B8F5 /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 				78B7193F2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift in Sources */,
 				BB2245DE2AA1125D005697D8 /* Content-ViewModel.swift in Sources */,
 				78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */,
+				BB0736952AA24ADA0037EDA6 /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
