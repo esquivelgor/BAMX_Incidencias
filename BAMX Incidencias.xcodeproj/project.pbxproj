@@ -8,21 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		78B7193F2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B7193E2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift */; };
-		78B719412A9AF21100F3B8F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B719402A9AF21100F3B8F5 /* ContentView.swift */; };
+		78B719412A9AF21100F3B8F5 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B719402A9AF21100F3B8F5 /* Login.swift */; };
 		78B719432A9AF21300F3B8F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B719422A9AF21300F3B8F5 /* Assets.xcassets */; };
 		78B719462A9AF21300F3B8F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B719452A9AF21300F3B8F5 /* Preview Assets.xcassets */; };
 		78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0F58B2A9BEE3F00D44B7B /* SplashScreenView.swift */; };
-		BB2245DE2AA1125D005697D8 /* Content-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2245DD2AA1125D005697D8 /* Content-ViewModel.swift */; };
+		BB0736952AA24ADA0037EDA6 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */; };
+		BB119B162AAAA72900F0E450 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B152AAAA72900F0E450 /* LoginViewModel.swift */; };
+		BB119B182AAAAA5200F0E450 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B172AAAAA5200F0E450 /* Webservice.swift */; };
+		BB7425F82AAD5A9D0087090C /* AppHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7425F72AAD5A9D0087090C /* AppHome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		78B7193B2A9AF21100F3B8F5 /* BAMX Incidencias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BAMX Incidencias.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B7193E2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAMX_IncidenciasApp.swift; sourceTree = "<group>"; };
-		78B719402A9AF21100F3B8F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		78B719402A9AF21100F3B8F5 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		78B719422A9AF21300F3B8F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78B719452A9AF21300F3B8F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		78F0F58B2A9BEE3F00D44B7B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		BB2245DD2AA1125D005697D8 /* Content-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Content-ViewModel.swift"; sourceTree = "<group>"; };
+		BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		BB119B152AAAA72900F0E450 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		BB119B172AAAAA5200F0E450 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		BB7425F72AAD5A9D0087090C /* AppHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,10 +61,12 @@
 		78B7193D2A9AF21100F3B8F5 /* BAMX Incidencias */ = {
 			isa = PBXGroup;
 			children = (
+				BB7425F62AAD5A8B0087090C /* Views */,
+				BB0F99182AAAA4F800089C3C /* Extensions */,
+				BB0F99172AAAA4E000089C3C /* View Models */,
+				BB0F99162AAAA4D600089C3C /* Services */,
+				BB0F99152AAAA4C700089C3C /* Models */,
 				78B7193E2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift */,
-				78B719402A9AF21100F3B8F5 /* ContentView.swift */,
-				BB2245DD2AA1125D005697D8 /* Content-ViewModel.swift */,
-				78F0F58B2A9BEE3F00D44B7B /* SplashScreenView.swift */,
 				78B719422A9AF21300F3B8F5 /* Assets.xcassets */,
 				78B719442A9AF21300F3B8F5 /* Preview Content */,
 			);
@@ -71,6 +79,47 @@
 				78B719452A9AF21300F3B8F5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BB0F99152AAAA4C700089C3C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BB0F99162AAAA4D600089C3C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BB119B172AAAAA5200F0E450 /* Webservice.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BB0F99172AAAA4E000089C3C /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				BB119B152AAAA72900F0E450 /* LoginViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		BB0F99182AAAA4F800089C3C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BB7425F62AAD5A8B0087090C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				78F0F58B2A9BEE3F00D44B7B /* SplashScreenView.swift */,
+				BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */,
+				78B719402A9AF21100F3B8F5 /* Login.swift */,
+				BB7425F72AAD5A9D0087090C /* AppHome.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,10 +192,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78B719412A9AF21100F3B8F5 /* ContentView.swift in Sources */,
+				78B719412A9AF21100F3B8F5 /* Login.swift in Sources */,
+				BB119B182AAAAA5200F0E450 /* Webservice.swift in Sources */,
 				78B7193F2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift in Sources */,
-				BB2245DE2AA1125D005697D8 /* Content-ViewModel.swift in Sources */,
 				78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */,
+				BB119B162AAAA72900F0E450 /* LoginViewModel.swift in Sources */,
+				BB0736952AA24ADA0037EDA6 /* RegistrationView.swift in Sources */,
+				BB7425F82AAD5A9D0087090C /* AppHome.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
