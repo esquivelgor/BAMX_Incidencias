@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  Login.swift
 //  BAMX Incidencias
 //
 //  Created by velgor on 26/08/23.
@@ -7,20 +7,13 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct Login: View {
     @State private var isShowingDetailView = false
     @StateObject private var loginVM =  LoginViewModel()
     
     var body: some View {
-            if !loginVM.isAuthenticated {
-                // Show the view you want users to see when logged on
-                VStack(spacing: 20) {
-                    Text("Welcome back **\(loginVM.username.lowercased())**!")
-                    Text("Today is: **\(Date().formatted(.dateTime))**")
-                    Button("Log out", action: loginVM.signout)
-                        .tint(.red)
-                        .buttonStyle(.bordered)
-                }
+            if loginVM.isAuthenticated {
+                AppHome()
             } else {
                 NavigationView {
                     ZStack {
@@ -72,8 +65,8 @@ struct ContentView: View {
     
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Login()
     }
 }
