@@ -15,7 +15,6 @@
 		BB0736952AA24ADA0037EDA6 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */; };
 		BB119B162AAAA72900F0E450 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B152AAAA72900F0E450 /* LoginViewModel.swift */; };
 		BB119B182AAAAA5200F0E450 /* Authentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B172AAAAA5200F0E450 /* Authentification.swift */; };
-		BB4407672ABA08DB00347C6C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4407662ABA08DB00347C6C /* LoginView.swift */; };
 		BB7425F82AAD5A9D0087090C /* AppHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7425F72AAD5A9D0087090C /* AppHome.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +28,6 @@
 		BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		BB119B152AAAA72900F0E450 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BB119B172AAAAA5200F0E450 /* Authentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentification.swift; sourceTree = "<group>"; };
-		BB4407662ABA08DB00347C6C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BB7425F72AAD5A9D0087090C /* AppHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +118,6 @@
 				BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */,
 				78B719402A9AF21100F3B8F5 /* AuthentificationView.swift */,
 				BB7425F72AAD5A9D0087090C /* AppHome.swift */,
-				BB4407662ABA08DB00347C6C /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,7 +198,6 @@
 				78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */,
 				BB119B162AAAA72900F0E450 /* LoginViewModel.swift in Sources */,
 				BB0736952AA24ADA0037EDA6 /* RegistrationView.swift in Sources */,
-				BB4407672ABA08DB00347C6C /* LoginView.swift in Sources */,
 				BB7425F82AAD5A9D0087090C /* AppHome.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

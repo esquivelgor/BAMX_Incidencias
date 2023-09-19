@@ -13,29 +13,31 @@ class LoginViewModel: ObservableObject {
     var password: String = ""
     @Published var isAuthenticated: Bool = false
     @Published var invalid: Bool = false
+    @Published var loginAlert: Bool = false
     
     
     func login() {
         
-        let defaults = UserDefaults.standard
-        
         Webservice().login(username: username, password: password) {
             result in switch result {
             case .success(let token):
-                defaults.setValue(token, forKey: "jsonwebtoken")
+                UserDefaults.standard.setValue(token, forKey: "access_token")
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
+                    print("True")
                 }
             case .failure(let error):
+                self.loginAlert = true
                 print(error.localizedDescription)
                 self.invalid = true
             }
         }
+        
     }
+
     
     func signout() {
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "jsonwebtoken")
+        UserDefaults.standard.removeObject(forKey: "access_token")
         DispatchQueue.main.async {
             self.isAuthenticated = false
         }

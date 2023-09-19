@@ -1,3 +1,4 @@
+
 //
 //  Webservice.swift
 //  BAMX Incidencias
@@ -14,10 +15,8 @@ enum AuthenticationError: Error {
 
 enum NetworkError: Error {
     case invalidURL
-    case invalidRequest
-    case badResponse
-    case badStatus
-    case failedToDecodeResponse
+    case noData
+    case decodingError
 }
 
 struct LoginRequestBody: Codable {
@@ -26,28 +25,28 @@ struct LoginRequestBody: Codable {
 }
 
 
-struct LoginResponse: Codable {
-    let user: String?
+struct User: Codable {
+    let user: UserDetails
     let access_token: String?
-    let type: String?
-    //let _id: String
-    //let first_name: String
-    //let last_name: String
-    //let email: String
-    //let role: String
-    //let identification: String
-    //let password: String
-    //let last_login: String
-    //let created_at: String
-    //let updated_at: String
+    let type: String
+}
+
+struct UserDetails: Codable {
+    let _id: String
+    let first_name: String
+    let last_name: String
+    let email: String
+    let role: String
+    let identification: String
+    let created_by: String?
+    let last_login: String
+    let created_at: String
+    let updated_at: String
 }
 
 class Webservice {
     
     func login(username: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
-        
-        
-        
         guard let url = URL(string: "https://food-bank-api.onrender.com/login") else {
             completion(.failure(.invalidURL))
             return
@@ -60,46 +59,26 @@ class Webservice {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(body)
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
+        URLSession.shared.dataTask(with: request) {
+            (data, response, error) in
+        
             guard let data = data, error == nil else {
                 completion(.failure(.custom(errorMessage:"Sin informacion")))
                 return
             }
-            let loginResponse = try? JSONDecoder().decode(LoginResponse.self, from: data)
-            print("0")
-            print(loginResponse?.user as Any)
-            print("1")
-            guard let loginResponse = try? JSONDecoder().decode(LoginResponse.self, from: data) else {
+        
+            guard let loginResponse = try? JSONDecoder().decode(User.self, from: data) else {
                 completion(.failure(.invalidCredentials))
                 return
             }
-            //print("2")
+            print(loginResponse)
             guard let token = loginResponse.access_token else {
                 completion(.failure(.invalidCredentials))
                 return
             }
-            
+        
             completion(.success(token))
-            
         } .resume()
     }
-    
-    
-    //func sendGet() {
-    //    guard let url = URL(string: "https://example.com/login") else {
-    //        print("Invalid URL")
-    //        return
-    //    }
-    //
-    //    URLSession.shared.dataTask(with: request) { (data, response, error) in
-    //
-    //        if let error = error {
-    //            print("Error 1")
-    //        } else if let data = data {
-    //            if let decodedData = try? JSONDecoder().decode(a, from: <#T##Data#>)
-    //        }
-    //
-    //    } .resume()    }
     
 }
