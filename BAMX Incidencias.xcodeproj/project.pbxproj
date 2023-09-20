@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A31C2002AAE916A00F1AA83 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A31C1FF2AAE916A00F1AA83 /* HomeScreen.swift */; };
 		78B7193F2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B7193E2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift */; };
 		78B719412A9AF21100F3B8F5 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B719402A9AF21100F3B8F5 /* Login.swift */; };
 		78B719432A9AF21300F3B8F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B719422A9AF21300F3B8F5 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A31C1FF2AAE916A00F1AA83 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		78B7193B2A9AF21100F3B8F5 /* BAMX Incidencias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BAMX Incidencias.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B7193E2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAMX_IncidenciasApp.swift; sourceTree = "<group>"; };
 		78B719402A9AF21100F3B8F5 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */,
 				78B719402A9AF21100F3B8F5 /* Login.swift */,
 				BB7425F72AAD5A9D0087090C /* AppHome.swift */,
+				1A31C1FF2AAE916A00F1AA83 /* HomeScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				BB119B182AAAAA5200F0E450 /* Webservice.swift in Sources */,
 				78B7193F2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift in Sources */,
 				78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */,
+				1A31C2002AAE916A00F1AA83 /* HomeScreen.swift in Sources */,
 				BB119B162AAAA72900F0E450 /* LoginViewModel.swift in Sources */,
 				BB0736952AA24ADA0037EDA6 /* RegistrationView.swift in Sources */,
 				BB7425F82AAD5A9D0087090C /* AppHome.swift in Sources */,

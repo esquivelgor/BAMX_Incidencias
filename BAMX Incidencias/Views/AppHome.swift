@@ -10,12 +10,13 @@ import SwiftUI
 struct AppHome: View {
     @StateObject private var loginVM =  LoginViewModel()
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(alignment: .leading, spacing: 20) {
             Text("Bienvenido a la pagina de inicio! **\(loginVM.username.lowercased())**!")
             Text("Hoy es: **\(Date().formatted(.dateTime))**")
             Button("Log out", action: loginVM.signout)
                 .tint(.red)
                 .buttonStyle(.bordered)
+
         }
     }
 }
