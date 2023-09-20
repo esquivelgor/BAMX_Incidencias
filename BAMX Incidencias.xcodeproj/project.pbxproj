@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		1A31C2002AAE916A00F1AA83 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A31C1FF2AAE916A00F1AA83 /* HomeScreen.swift */; };
 		78B7193F2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B7193E2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift */; };
-		78B719412A9AF21100F3B8F5 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B719402A9AF21100F3B8F5 /* Login.swift */; };
+		78B719412A9AF21100F3B8F5 /* AuthentificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B719402A9AF21100F3B8F5 /* AuthentificationView.swift */; };
 		78B719432A9AF21300F3B8F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B719422A9AF21300F3B8F5 /* Assets.xcassets */; };
 		78B719462A9AF21300F3B8F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B719452A9AF21300F3B8F5 /* Preview Assets.xcassets */; };
 		78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0F58B2A9BEE3F00D44B7B /* SplashScreenView.swift */; };
 		BB0736952AA24ADA0037EDA6 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */; };
 		BB119B162AAAA72900F0E450 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B152AAAA72900F0E450 /* LoginViewModel.swift */; };
-		BB119B182AAAAA5200F0E450 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B172AAAAA5200F0E450 /* Webservice.swift */; };
+		BB119B182AAAAA5200F0E450 /* Authentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B172AAAAA5200F0E450 /* Authentification.swift */; };
 		BB7425F82AAD5A9D0087090C /* AppHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7425F72AAD5A9D0087090C /* AppHome.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,13 +23,13 @@
 		1A31C1FF2AAE916A00F1AA83 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		78B7193B2A9AF21100F3B8F5 /* BAMX Incidencias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BAMX Incidencias.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B7193E2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAMX_IncidenciasApp.swift; sourceTree = "<group>"; };
-		78B719402A9AF21100F3B8F5 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		78B719402A9AF21100F3B8F5 /* AuthentificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationView.swift; sourceTree = "<group>"; };
 		78B719422A9AF21300F3B8F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78B719452A9AF21300F3B8F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		78F0F58B2A9BEE3F00D44B7B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		BB119B152AAAA72900F0E450 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		BB119B172AAAAA5200F0E450 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		BB119B172AAAAA5200F0E450 /* Authentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentification.swift; sourceTree = "<group>"; };
 		BB7425F72AAD5A9D0087090C /* AppHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +93,7 @@
 		BB0F99162AAAA4D600089C3C /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BB119B172AAAAA5200F0E450 /* Webservice.swift */,
+				BB119B172AAAAA5200F0E450 /* Authentification.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -118,7 +118,7 @@
 			children = (
 				78F0F58B2A9BEE3F00D44B7B /* SplashScreenView.swift */,
 				BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */,
-				78B719402A9AF21100F3B8F5 /* Login.swift */,
+				78B719402A9AF21100F3B8F5 /* AuthentificationView.swift */,
 				BB7425F72AAD5A9D0087090C /* AppHome.swift */,
 				1A31C1FF2AAE916A00F1AA83 /* HomeScreen.swift */,
 			);
@@ -195,8 +195,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78B719412A9AF21100F3B8F5 /* Login.swift in Sources */,
-				BB119B182AAAAA5200F0E450 /* Webservice.swift in Sources */,
+				78B719412A9AF21100F3B8F5 /* AuthentificationView.swift in Sources */,
+				BB119B182AAAAA5200F0E450 /* Authentification.swift in Sources */,
 				78B7193F2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift in Sources */,
 				78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */,
 				1A31C2002AAE916A00F1AA83 /* HomeScreen.swift in Sources */,

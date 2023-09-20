@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Login: View {
     @State private var isShowingDetailView = false
+    @State private var fieldsIncompleted = false
     @StateObject private var loginVM =  LoginViewModel()
     
     var body: some View {
@@ -32,11 +33,16 @@ struct Login: View {
                                 .privacySensitive()
                             HStack {
                                 Spacer()
-                                Button("Olvide la contrasena", action: loginVM.passwordForgotten)
+                                Button("Olvidé la contraseña", action: loginVM.passwordForgotten)
                                     .tint(.red.opacity(0.8))
                                 Spacer()
                                 Button("Log in"){
-                                    loginVM.login()
+                                    if !loginVM.username.isEmpty || !loginVM.password.isEmpty {
+                                        loginVM.login()
+                                    } else {
+                                        fieldsIncompleted = true
+                                    }
+                                    
                                 }
                                     .buttonStyle(.borderedProminent)
                                     .tint(.red)
@@ -51,6 +57,13 @@ struct Login: View {
                         }
                         .alert("No tienes acceso", isPresented: $loginVM.invalid) {
                             Button("Cerrar", action: loginVM.passwordForgotten)
+                        }
+                        .alert(isPresented: $fieldsIncompleted) {
+                            Alert(
+                                title: Text("Informacion incompleta"),
+                                message: Text("Debes de completar todos los campos"),
+                                dismissButton: .default(Text("Ok"))
+                                )
                         }
                         .frame(width: 300)
                         .padding()
