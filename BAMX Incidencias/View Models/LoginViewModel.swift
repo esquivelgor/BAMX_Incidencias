@@ -14,8 +14,7 @@ class LoginViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     @Published var invalid: Bool = false
     @Published var loginAlert: Bool = false
-    
-    
+    @Published var passwordAlert: Bool = false
     func login() {
         
         Webservice().login(username: username, password: password) {
@@ -44,6 +43,7 @@ class LoginViewModel: ObservableObject {
     }
     
     func passwordForgotten() {
-        print("Password forgotten!!")
+        print("The user has forgot his password!!")
+        self.passwordAlert = true
     }
 }

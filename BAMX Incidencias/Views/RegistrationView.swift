@@ -77,7 +77,7 @@ struct RegistrationView: View {
             }
             .navigationBarTitle("Nuevo Usuario")
             .alert(isPresented: $showAlert) {
-                Alert(title: Text("Enviado!"), message: Text("Solicitud enviada con exito, espera tu confirmacion!"), dismissButton: .default(Text("Ok")))
+                Alert(title: Text("Enviado!"), message: Text("Solicitud enviada con exito, espera tu confirmacion!"), dismissButton: .default(Text("Okay")))
             }
         }
     }

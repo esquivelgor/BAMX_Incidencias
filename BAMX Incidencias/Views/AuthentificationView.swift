@@ -43,17 +43,30 @@ struct AuthentificationView: View {
                             Spacer()
                         }
                         Spacer()
-                        NavigationLink(destination: RegistrationView(), label: {
-                            Text("Registrarme")
-                                .foregroundColor(.red)
+                        HStack{
+                            NavigationLink(destination: RegistrationView(), label: {
+                                Text("Registrarme")
+                                    .foregroundColor(.red)
+                                
+                            })
+                            Spacer()
+                            NavigationLink(destination: RequestView(), label: {
+                                Text("Solicitar Acceso")
+                                    .foregroundColor(.red)
+                                
+                            })
                             
-                        })
-                    }
-                    .alert("No tienes acceso", isPresented: $loginVM.invalid) {
-                        Button("Cerrar", action: loginVM.passwordForgotten)
+                        }
                     }
                     .frame(width: 300)
                     .padding()
+                    .alert("No tienes acceso", isPresented: $loginVM.invalid) {
+                        Button("Cerrar", action: loginVM.passwordForgotten)
+                    }
+                    .alert(isPresented: $loginVM.passwordAlert) {
+                        Alert(title: Text("Enviado!"), message: Text("Espera por una solucion por parte del los administradores!"), dismissButton: .default(Text("Okay"))
+                        )
+                    }
                 }
                 .transition(.offset(x: 0, y: 850))
                 
