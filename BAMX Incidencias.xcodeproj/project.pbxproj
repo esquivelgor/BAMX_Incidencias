@@ -20,6 +20,7 @@
 		BB119B162AAAA72900F0E450 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B152AAAA72900F0E450 /* LoginViewModel.swift */; };
 		BB119B182AAAAA5200F0E450 /* Authentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B172AAAAA5200F0E450 /* Authentification.swift */; };
 		BB7425F82AAD5A9D0087090C /* AppHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7425F72AAD5A9D0087090C /* AppHome.swift */; };
+		BB94CB9F2ABBB9BB008B94A3 /* requestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB94CB9E2ABBB9BB008B94A3 /* requestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		BB119B152AAAA72900F0E450 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BB119B172AAAAA5200F0E450 /* Authentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentification.swift; sourceTree = "<group>"; };
 		BB7425F72AAD5A9D0087090C /* AppHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHome.swift; sourceTree = "<group>"; };
+		BB94CB9E2ABBB9BB008B94A3 /* requestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = requestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				1A737B682ABD6397003180A2 /* NotificationsView.swift */,
 				1A737B702ABD6F82003180A2 /* AccountView.swift */,
 				1A737B6E2ABD6747003180A2 /* ColorExtensionsView.swift */,
+				BB94CB9E2ABBB9BB008B94A3 /* requestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			files = (
 				1A737B692ABD6397003180A2 /* NotificationsView.swift in Sources */,
 				1A737B6F2ABD6747003180A2 /* ColorExtensionsView.swift in Sources */,
+				BB94CB9F2ABBB9BB008B94A3 /* requestView.swift in Sources */,
 				78B719412A9AF21100F3B8F5 /* AuthentificationView.swift in Sources */,
 				BB119B182AAAAA5200F0E450 /* Authentification.swift in Sources */,
 				1A737B712ABD6F82003180A2 /* AccountView.swift in Sources */,
