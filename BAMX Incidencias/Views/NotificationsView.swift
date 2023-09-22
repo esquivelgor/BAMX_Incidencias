@@ -1,22 +1,20 @@
 //
-//  AppHome.swift
+//  NotificacionesView.swift
 //  BAMX Incidencias
 //
-//  Created by user245584 on 9/9/23.
+//  Created by user245071 on 9/22/23.
 //
 
 import SwiftUI
 
-struct AppHome: View {
+struct NotificationsView: View {
     @State private var showMenu: Bool = false
-    @StateObject private var loginVM =  LoginViewModel()
-    
     var body: some View {
         NavigationView {
         
         ZStack {
-            VStack (alignment: .leading){
-                Text("Mis Incidencias")
+            VStack (alignment: .leading) {
+                Text("Mis Notificaciones")
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(Color(hex: 0xE2032C))
@@ -27,34 +25,31 @@ struct AppHome: View {
                 
                 ScrollView(.vertical) {
                     VStack {
-                        // Table headers
-                        HStack (alignment: .center){
-                            Text("Incidencia")
-                                .frame(maxWidth: .infinity)
-                            Text("Categorías")
-                                .frame(maxWidth: .infinity)
-                            Text("Estatus")
-                                .frame(maxWidth: .infinity)
+                        HStack{
+                            Text("Fecha")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("Descripcion")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .font(Font.system(size: 18).weight(.bold))
                         .padding(8)
                         Rectangle()
                               .frame(height: 2)
-                              .foregroundColor(Color.black)
+                              .foregroundColor(Color(hex: 0x575756))
                         
                         ForEach(0..<3) { rowIndex in
                             HStack {
-                                Text("Incidencia \(rowIndex + 1)")
+                                Text("Dia \(rowIndex + 1)")
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                                Text("Categoría \(rowIndex + 1)")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                Text("Estatus \(rowIndex + 1)")
+                                Text("Text \(rowIndex + 1)")
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
                             .padding(8)
+                            .foregroundColor(Color(hex: 0x575756))
+
                             Rectangle()
                                   .frame(height: 2)
-                                  .foregroundColor(Color.black)
+                                  .foregroundColor(Color(hex: 0x575756))
                         }
                     }
                     .padding(.horizontal, 16)
@@ -102,11 +97,11 @@ struct AppHome: View {
         .navigationBarBackButtonHidden(true)
     }
     
-    }
 
+}
 
-struct AppHome_Previews: PreviewProvider {
+struct NotificationsView_Previews: PreviewProvider {
     static var previews: some View {
-        AppHome()
+        NotificationsView()
     }
 }
