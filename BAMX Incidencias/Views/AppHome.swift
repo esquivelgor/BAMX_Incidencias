@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AppHome: View {
     @State private var showMenu: Bool = false
+    @State private var showFloatingMenu: Bool = true
     @StateObject private var loginVM =  LoginViewModel()
     
     var body: some View {
@@ -75,24 +76,24 @@ struct AppHome: View {
                 .background(Color.black.opacity(showMenu ? 0.5 : 0))
                 
                 // Floating Menu Button
-                ZStack (alignment: .bottomTrailing){
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    FloatingMenu()
-                        .padding()
+                if (showFloatingMenu == true) {
+                    ZStack (alignment: .bottomTrailing){
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        FloatingMenu()
+                            .padding()
+                    }
                 }
-                
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                
                 Button {
                     self.showMenu.toggle()
+                    showFloatingMenu.toggle()
                 } label: {
                     
                     if showMenu {
-                        
                         Image(systemName: "xmark")
                             .font(.title)
                             .foregroundColor(.white)
@@ -105,10 +106,6 @@ struct AppHome: View {
                     
                 }
             }
-            
-            
-            
-            
         }
         .navigationBarBackButtonHidden(true)
     }

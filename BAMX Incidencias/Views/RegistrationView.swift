@@ -46,7 +46,6 @@ struct RegistrationView: View {
                             Text($0)
                         }
                     }
-                    .pickerStyle(.menu)
                 }
 
                 Section(header: Text("Informacion de la cuenta")) {

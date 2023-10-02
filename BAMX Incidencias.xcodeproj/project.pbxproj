@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A6A9D082ACB635600A17D23 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A9D072ACB635600A17D23 /* ImagePicker.swift */; };
 		1A737B2D2ABD50B6003180A2 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A737B2C2ABD50B6003180A2 /* SideMenuView.swift */; };
 		1A737B692ABD6397003180A2 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A737B682ABD6397003180A2 /* NotificationsView.swift */; };
 		1A737B6F2ABD6747003180A2 /* ColorExtensionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A737B6E2ABD6747003180A2 /* ColorExtensionsView.swift */; };
 		1A737B712ABD6F82003180A2 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A737B702ABD6F82003180A2 /* AccountView.swift */; };
 		1AEFCE632AC8AEF3001567BF /* FloatingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEFCE622AC8AEF3001567BF /* FloatingMenu.swift */; };
+		1AEFCE652AC8B7EA001567BF /* incidentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEFCE642AC8B7EA001567BF /* incidentsView.swift */; };
 		78B7193F2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B7193E2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift */; };
 		78B719412A9AF21100F3B8F5 /* AuthentificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B719402A9AF21100F3B8F5 /* AuthentificationView.swift */; };
 		78B719432A9AF21300F3B8F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78B719422A9AF21300F3B8F5 /* Assets.xcassets */; };
@@ -25,11 +27,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A6A9D072ACB635600A17D23 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		1A737B2C2ABD50B6003180A2 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		1A737B682ABD6397003180A2 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		1A737B6E2ABD6747003180A2 /* ColorExtensionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensionsView.swift; sourceTree = "<group>"; };
 		1A737B702ABD6F82003180A2 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		1AEFCE622AC8AEF3001567BF /* FloatingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMenu.swift; sourceTree = "<group>"; };
+		1AEFCE642AC8B7EA001567BF /* incidentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = incidentsView.swift; sourceTree = "<group>"; };
 		78B7193B2A9AF21100F3B8F5 /* BAMX Incidencias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BAMX Incidencias.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B7193E2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAMX_IncidenciasApp.swift; sourceTree = "<group>"; };
 		78B719402A9AF21100F3B8F5 /* AuthentificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationView.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				BB119B152AAAA72900F0E450 /* LoginViewModel.swift */,
+				1A6A9D072ACB635600A17D23 /* ImagePicker.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 				BB0736942AA24ADA0037EDA6 /* RegistrationView.swift */,
 				78B719402A9AF21100F3B8F5 /* AuthentificationView.swift */,
 				BB7425F72AAD5A9D0087090C /* AppHome.swift */,
+				1AEFCE642AC8B7EA001567BF /* incidentsView.swift */,
 				1AEFCE622AC8AEF3001567BF /* FloatingMenu.swift */,
 				1A737B2C2ABD50B6003180A2 /* SideMenuView.swift */,
 				1A737B682ABD6397003180A2 /* NotificationsView.swift */,
@@ -218,9 +224,11 @@
 				1A737B712ABD6F82003180A2 /* AccountView.swift in Sources */,
 				78B7193F2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift in Sources */,
 				1AEFCE632AC8AEF3001567BF /* FloatingMenu.swift in Sources */,
+				1AEFCE652AC8B7EA001567BF /* incidentsView.swift in Sources */,
 				78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */,
 				1A737B2D2ABD50B6003180A2 /* SideMenuView.swift in Sources */,
 				BB119B162AAAA72900F0E450 /* LoginViewModel.swift in Sources */,
+				1A6A9D082ACB635600A17D23 /* ImagePicker.swift in Sources */,
 				BB0736952AA24ADA0037EDA6 /* RegistrationView.swift in Sources */,
 				BB7425F82AAD5A9D0087090C /* AppHome.swift in Sources */,
 			);
