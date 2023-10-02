@@ -14,11 +14,13 @@ struct incidentsView: View {
     @State private var priority = ""
     @State private var pictures = ""
     @State private var description = ""
-    @State private var showAlert = false
     @State private var caption = ""
     
+    @State private var showAlert = false
+    @State private var showNegativeAlert = false
+    
     @State private var selectedCategory = "Seleccionar"
-    let categories = ["Seleccionar","Categoria 1", "Categoria 2", "Categoria 3"]
+    let categories = ["Seleccionar","Tecnica", "Logistica", "Administrativa"]
     
     @State private var selectedPriority = "Seleccionar"
     let priorities = ["Seleccionar","Baja", "Media", "Alta"]
@@ -27,7 +29,7 @@ struct incidentsView: View {
     @State private var showSheet = false
     
     private var isFormValid: Bool {
-        return !topic.isEmpty && !category.isEmpty
+        return !topic.isEmpty
     }
     
     var body: some View {
@@ -74,12 +76,43 @@ struct incidentsView: View {
                         //ImagePicker(sourceType: .camera, selectedImage: self.$image)
                         
                     }
-                    TextField("Descripcion", text: $topic)
-                    
-                }
+                    TextField("Descripcion", text: $description)
+                    Section {
+                        HStack {
+                            Spacer()
+                            Button("Enviar") {
+                                if isFormValid {
+                                    showAlert = true
+                                    showNegativeAlert = false
+                                    print("a")
+                                } else {
+                                    showAlert = true
+                                    showNegativeAlert = true
+                                    print("b")
+                                }
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .tint(.red)
+                            .cornerRadius(50)
+                            
+                            Spacer()
+                        }
+                    }                }
                 .navigationBarTitle("Nueva Incidencia")
                 .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Enviado!"), message: Text("Solicitud enviada con exito, espera tu confirmacion!"), dismissButton: .default(Text("Okay")))
+                    if showNegativeAlert {
+                        return Alert(
+                            title: Text("Error!"),
+                            message: Text("Revisa tus datos nuevamente, algo no está bien!"),
+                            dismissButton: .default(Text("Okay"))
+                        )
+                    } else {
+                        return Alert(
+                            title: Text("Enviado!"),
+                            message: Text("Solicitud enviada con éxito, espera tu confirmación!"),
+                            dismissButton: .default(Text("Okay"))
+                        )
+                    }
                 }
             }
         }
