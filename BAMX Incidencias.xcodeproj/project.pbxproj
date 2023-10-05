@@ -23,6 +23,7 @@
 		BB119B162AAAA72900F0E450 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B152AAAA72900F0E450 /* LoginViewModel.swift */; };
 		BB119B182AAAAA5200F0E450 /* Authentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB119B172AAAAA5200F0E450 /* Authentification.swift */; };
 		BB7425F82AAD5A9D0087090C /* AppHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7425F72AAD5A9D0087090C /* AppHome.swift */; };
+		BB781C062ACF701A0089BA07 /* GetEmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB781C052ACF701A0089BA07 /* GetEmailModel.swift */; };
 		BB94CB9F2ABBB9BB008B94A3 /* requestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB94CB9E2ABBB9BB008B94A3 /* requestView.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		BB119B152AAAA72900F0E450 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BB119B172AAAAA5200F0E450 /* Authentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentification.swift; sourceTree = "<group>"; };
 		BB7425F72AAD5A9D0087090C /* AppHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHome.swift; sourceTree = "<group>"; };
+		BB781C052ACF701A0089BA07 /* GetEmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEmailModel.swift; sourceTree = "<group>"; };
 		BB94CB9E2ABBB9BB008B94A3 /* requestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = requestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 			children = (
 				BB119B152AAAA72900F0E450 /* LoginViewModel.swift */,
 				1A6A9D072ACB635600A17D23 /* ImagePicker.swift */,
+				BB781C052ACF701A0089BA07 /* GetEmailModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				BB119B182AAAAA5200F0E450 /* Authentification.swift in Sources */,
 				1A737B712ABD6F82003180A2 /* AccountView.swift in Sources */,
 				78B7193F2A9AF21100F3B8F5 /* BAMX_IncidenciasApp.swift in Sources */,
+				BB781C062ACF701A0089BA07 /* GetEmailModel.swift in Sources */,
 				1AEFCE632AC8AEF3001567BF /* FloatingMenu.swift in Sources */,
 				1AEFCE652AC8B7EA001567BF /* incidentsView.swift in Sources */,
 				78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */,

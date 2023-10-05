@@ -9,11 +9,11 @@ import SwiftUI
 
 struct RequestView: View {
 
-    @State private var email = ""
     @State private var showAlert = false
-
+    @StateObject private var getEmailVM =  GetEmailViewModel()
+    
     private var isFormValid: Bool {
-        return isValidEmail(email)
+        return isValidEmail(getEmailVM.email)
     }
 
     private func isValidEmail(_ email: String) -> Bool {
@@ -26,7 +26,7 @@ struct RequestView: View {
         NavigationView {
             Form {
                 Section(header: Text("Informacion de la cuenta")) {
-                    TextField("Email", text: $email)
+                    TextField("Email", text: $getEmailVM.email)
                         .textContentType(.emailAddress)
                         .keyboardType(.emailAddress)
                 }
@@ -37,6 +37,7 @@ struct RequestView: View {
                     Button("Enviar") {
                         if isFormValid {
                             showAlert = true
+                            getEmailVM.sendEmail()
                         } else {
                             showAlert = true
                         }

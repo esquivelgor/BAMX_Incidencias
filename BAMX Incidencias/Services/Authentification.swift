@@ -7,6 +7,9 @@
 //
 
 import Foundation
+
+// Errors
+
 enum AuthenticationError: Error {
     case invalidCredentials
     case invalidURL
@@ -19,11 +22,18 @@ enum NetworkError: Error {
     case decodingError
 }
 
+// Request Body
+
 struct LoginRequestBody: Codable {
     let username: String
     let password: String
 }
 
+struct GetEmailRequestBody: Codable {
+    let email: String
+}
+
+// Responses
 
 struct User: Codable {
     let user: UserDetails
@@ -32,7 +42,7 @@ struct User: Codable {
 }
 
 struct UserDetails: Codable {
-    let _id: String
+    let _id: String?
     let first_name: String
     let last_name: String
     let email: String
@@ -42,6 +52,11 @@ struct UserDetails: Codable {
     let last_login: String
     let created_at: String
     let updated_at: String
+}
+
+struct Email: Codable {
+    let U: String
+    let access_token: String?
 }
 
 class Webservice {
@@ -81,4 +96,41 @@ class Webservice {
         } .resume()
     }
     
+    func sendEmail(email: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
+        guard let url = URL(string: "https://food-bank-api.onrender.com/requests/auth") else {
+            completion(.failure(.invalidURL))
+            return
+        }
+        
+        let body = GetEmailRequestBody(email: email)
+        print(body)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONEncoder().encode(body)
+        
+        URLSession.shared.dataTask(with: request) {
+            (data, response, error) in
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(.custom(errorMessage: "No HTTP response")))
+                return
+            }
+            
+            if let data = data {
+                let responseString = String(data: data, encoding: .utf8)
+                print("Response Data: \(responseString ?? "Empty")")
+            }
+                    
+            if httpResponse.statusCode == 200 {
+                completion(.success("\(httpResponse.statusCode)"))
+                print("Success! \(httpResponse.statusCode)")
+            } else {
+                completion(.failure(.custom(errorMessage: "Wrong statusCode \(httpResponse.statusCode)")))
+            }
+            
+        } .resume()
+    }
 }
+
+
