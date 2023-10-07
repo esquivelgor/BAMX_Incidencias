@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A4BE6172AD0EC0D009D8957 /* CreatedIncidenciaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4BE6162AD0EC0D009D8957 /* CreatedIncidenciaView.swift */; };
 		1A6A9D082ACB635600A17D23 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A9D072ACB635600A17D23 /* ImagePicker.swift */; };
 		1A737B2D2ABD50B6003180A2 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A737B2C2ABD50B6003180A2 /* SideMenuView.swift */; };
 		1A737B692ABD6397003180A2 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A737B682ABD6397003180A2 /* NotificationsView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A4BE6162AD0EC0D009D8957 /* CreatedIncidenciaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedIncidenciaView.swift; sourceTree = "<group>"; };
 		1A6A9D072ACB635600A17D23 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		1A737B2C2ABD50B6003180A2 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		1A737B682ABD6397003180A2 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				78B719402A9AF21100F3B8F5 /* AuthentificationView.swift */,
 				BB7425F72AAD5A9D0087090C /* AppHome.swift */,
 				1AEFCE642AC8B7EA001567BF /* incidentsView.swift */,
+				1A4BE6162AD0EC0D009D8957 /* CreatedIncidenciaView.swift */,
 				1AEFCE622AC8AEF3001567BF /* FloatingMenu.swift */,
 				1A737B2C2ABD50B6003180A2 /* SideMenuView.swift */,
 				1A737B682ABD6397003180A2 /* NotificationsView.swift */,
@@ -231,6 +234,7 @@
 				1AEFCE652AC8B7EA001567BF /* incidentsView.swift in Sources */,
 				78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */,
 				1A737B2D2ABD50B6003180A2 /* SideMenuView.swift in Sources */,
+				1A4BE6172AD0EC0D009D8957 /* CreatedIncidenciaView.swift in Sources */,
 				BB119B162AAAA72900F0E450 /* LoginViewModel.swift in Sources */,
 				1A6A9D082ACB635600A17D23 /* ImagePicker.swift in Sources */,
 				BB0736952AA24ADA0037EDA6 /* RegistrationView.swift in Sources */,

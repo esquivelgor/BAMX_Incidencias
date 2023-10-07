@@ -36,6 +36,17 @@ struct SideMenuView: View {
           }
         .font(.title)
         .foregroundColor(.white)
+          
+          NavigationLink(destination: incidentsView()){
+
+        HStack {
+            Image(systemName: "plus.circle")
+            Text("Nuevo Ticket")
+        }
+          }
+        .font(.title)
+        .foregroundColor(.white)
+          
           Spacer()
       
       
