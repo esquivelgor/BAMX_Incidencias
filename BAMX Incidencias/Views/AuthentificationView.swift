@@ -40,7 +40,6 @@ struct AuthentificationView: View {
                             }
                             .buttonStyle(.borderedProminent)
                             .tint(.red)
-                            Spacer()
                         }
                         Spacer()
                         HStack{

@@ -14,25 +14,20 @@ struct RegistrationView: View {
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var agreedToTerms = false
-    @State private var showAlert = false
+    @State private var showPositiveAlert = false
+    @State private var showNegativeAlert = false
+    
     @State private var selectedOp = "Rol 1"
     let rolls = ["Rol 1", "Rol 2", "Rol 3"]
 
     private var isFormValid: Bool {
-        return !name.isEmpty && !forename.isEmpty && isValidEmail(email) && isValidPassword(password) && password == confirmPassword && agreedToTerms
+        return !name.isEmpty && !forename.isEmpty && isValidEmail(email) && password == confirmPassword && agreedToTerms
     }
 
     private func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"#
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailPredicate.evaluate(with: email)
-    }
-
-    private func isValidPassword(_ password: String) -> Bool {
-        // Password must have at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character.
-        let passwordRegEx = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
-        let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
-        return passwordPredicate.evaluate(with: password)
     }
 
     var body: some View {
@@ -46,7 +41,6 @@ struct RegistrationView: View {
                             Text($0)
                         }
                     }
-                    .pickerStyle(.menu)
                 }
 
                 Section(header: Text("Informacion de la cuenta")) {
@@ -64,10 +58,11 @@ struct RegistrationView: View {
                         Spacer()
                         Button("Enviar") {
                             if isFormValid {
-                                showAlert = true
+                                showPositiveAlert = true
+                            } else {
+                                showNegativeAlert = true
                             }
                         }
-                        .disabled(!isFormValid)
                         .buttonStyle(.borderedProminent)
                         .tint(.red)
                         .cornerRadius(50)
@@ -76,8 +71,11 @@ struct RegistrationView: View {
                 }
             }
             .navigationBarTitle("Nuevo Usuario")
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $showPositiveAlert) {
                 Alert(title: Text("Enviado!"), message: Text("Solicitud enviada con exito, espera tu confirmacion!"), dismissButton: .default(Text("Okay")))
+            }
+            .alert(isPresented: $showNegativeAlert) {
+                Alert(title: Text("Cuidado!"), message: Text("Porfavor, llena todos los campos correspondientes!"), dismissButton: .default(Text("Okay")))
             }
         }
     }
