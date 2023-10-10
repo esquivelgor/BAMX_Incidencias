@@ -28,37 +28,38 @@ struct SideMenuView: View {
         .font(.title)
         .foregroundColor(.white)
           NavigationLink(destination: NotificationsView()){
-
-        HStack {
-            Image(systemName: "bell.fill")
-            Text("Notificaciones")
-        }
+              
+              HStack {
+                  Image(systemName: "bell.fill")
+                  Text("Notificaciones")
+              }
           }
-        .font(.title)
-        .foregroundColor(.white)
+          .font(.title)
+          .foregroundColor(.white)
           
           NavigationLink(destination: incidentsView()){
-
-        HStack {
-            Image(systemName: "plus.circle")
-            Text("Nuevo Ticket")
-        }
+              HStack {
+                  Image(systemName: "plus.circle")
+                  Text("Nuevo Ticket")
+              }
           }
-        .font(.title)
-        .foregroundColor(.white)
+          .font(.title)
+          .foregroundColor(.white)
           
           Spacer()
       
       
           Button(action: {
-              // Add your logout action here
+              TokenManager.clearAccessToken()
           }) {
-              HStack {
-                  Image(systemName: "arrow.right.square")
-                  Text("Logout")
+              NavigationLink(destination: AuthentificationView()) {
+                  HStack {
+                      Image(systemName: "arrow.right.square")
+                      Text("Logout")
+                  }
+                  .font(.title)
+                  .foregroundColor(.white)
               }
-              .font(.title)
-              .foregroundColor(.white)
           }
 
       

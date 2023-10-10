@@ -7,6 +7,16 @@
 
 import Foundation
 
+struct TokenManager {
+    static var accessToken: String? {
+        return UserDefaults.standard.string(forKey: "access_token")
+    }
+    
+    static func clearAccessToken() {
+        UserDefaults.standard.removeObject(forKey: "access_token")
+    }
+}
+
 class LoginViewModel: ObservableObject {
     
     var username: String = ""

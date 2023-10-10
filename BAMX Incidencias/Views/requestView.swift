@@ -42,6 +42,13 @@ struct RequestView: View {
                             showAlert = true
                         }
                     }
+                    .alert(isPresented: $showAlert) {
+                        if isFormValid {
+                            return Alert(title: Text("Enviado"), message: Text("Solicitud enviada con exito, espera tu confirmacion"), dismissButton: .default(Text("Okay")))
+                        } else {
+                            return Alert(title: Text("Error"), message: Text("El formato del correo electrónico no es válido. Por favor, corrige el campo de correo electrónico."), dismissButton: .default(Text("Okay")))
+                        }
+                    }
                     .buttonStyle(.borderedProminent)
                     .tint(.red)
                     .cornerRadius(50)
@@ -49,13 +56,6 @@ struct RequestView: View {
                 }
             }
             .navigationBarTitle("Solicitud de Acceso")
-            .alert(isPresented: $showAlert) {
-                if isFormValid {
-                    return Alert(title: Text("Enviado!"), message: Text("Solicitud enviada con exito, espera tu confirmacion!"), dismissButton: .default(Text("Okay")))
-                } else {
-                    return Alert(title: Text("Error"), message: Text("El formato del correo electrónico no es válido. Por favor, corrige el campo de correo electrónico."), dismissButton: .default(Text("Okay")))
-                }
-            }
         }
     }
 }
