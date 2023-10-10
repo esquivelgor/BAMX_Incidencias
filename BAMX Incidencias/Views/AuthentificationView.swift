@@ -10,7 +10,10 @@ import SwiftUI
 struct AuthentificationView: View {
     @State private var isShowingDetailView = false
     @StateObject private var loginVM =  LoginViewModel()
-
+    
+    @State private var showLoginAlert = false
+    @State private var showPasswordAlert = false
+    
     var body: some View {
         if loginVM.isAuthenticated {
             AppHome()
@@ -32,40 +35,56 @@ struct AuthentificationView: View {
                             .privacySensitive()
                         HStack {
                             Spacer()
-                            Button("Olvide la contrasena", action: loginVM.passwordForgotten)
-                                .tint(.red.opacity(0.8))
+                            Button("Olvide la contrasena") {
+                                showPasswordAlert = true
+                                loginVM.passwordForgotten()
+                            }
+                            .alert(isPresented: $showPasswordAlert) {
+                                Alert(
+                                    title: Text("Enviado"),
+                                    message: Text("Espere por una solucion por parte del los administradores"),
+                                    dismissButton: .default(Text("Okay"))
+                                )
+                            }
+                            .tint(.red.opacity(0.8))
+                            
                             Spacer()
+                            
                             Button("Log in"){
                                 loginVM.login()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                                    if !loginVM.isAuthenticated {
+                                        showLoginAlert = true
+                                    }
+                                }
+                            }
+                            .alert(isPresented: $showLoginAlert) {
+                                Alert(
+                                    title: Text("No tienes acceso"),
+                                    dismissButton: .default(Text("Cerrar"))
+                                )
                             }
                             .buttonStyle(.borderedProminent)
                             .tint(.red)
                         }
                         Spacer()
+                        
                         HStack{
                             NavigationLink(destination: RegistrationView(), label: {
                                 Text("Registrarme")
                                     .foregroundColor(.red)
-                                
                             })
+                            
                             Spacer()
+                            
                             NavigationLink(destination: RequestView(), label: {
                                 Text("Solicitar Acceso")
                                     .foregroundColor(.red)
-                                
                             })
-                            
                         }
                     }
                     .frame(width: 300)
                     .padding()
-                    .alert("No tienes acceso", isPresented: $loginVM.invalid) {
-                        Button("Cerrar", action: loginVM.passwordForgotten)
-                    }
-                    .alert(isPresented: $loginVM.passwordAlert) {
-                        Alert(title: Text("Enviado!"), message: Text("Espera por una solucion por parte del los administradores!"), dismissButton: .default(Text("Okay"))
-                        )
-                    }
                 }
                 .transition(.offset(x: 0, y: 850))
                 

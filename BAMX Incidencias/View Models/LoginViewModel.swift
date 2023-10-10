@@ -44,6 +44,5 @@ class LoginViewModel: ObservableObject {
     
     func passwordForgotten() {
         print("The user has forgot his password!!")
-        self.passwordAlert = true
     }
 }
