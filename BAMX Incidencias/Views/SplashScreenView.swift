@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct SplashScreenView: View {
+    
     @State private var isActive = false
     @State private var size = 0.4
     @State private var opacity = 0.5
+    
     var body: some View {
         if isActive {
             AuthentificationView()

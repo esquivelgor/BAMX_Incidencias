@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct AppHome: View {
+    
     @State private var showMenu: Bool = false
     @State private var showFloatingMenu: Bool = true
-    @StateObject private var loginVM =  LoginViewModel()
+    @EnvironmentObject var loginVM : LoginViewModel
     
     var body: some View {
-        if !(TokenManager.accessToken != nil) {
-            Text("No estas autentificado")
+        if !loginVM.isAuthenticated {
+            AuthentificationView()
         } else {
             NavigationView {
                 ZStack {
@@ -111,8 +112,8 @@ struct AppHome: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
+            
         }
-        
     }
 }
 

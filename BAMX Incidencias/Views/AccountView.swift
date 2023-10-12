@@ -12,7 +12,8 @@ struct AccountView: View {
     @State private var showMenu: Bool = false
     @State private var image = UIImage()
     @State private var showSheet = false
-    @State private var accessToken = TokenManager.accessToken
+    
+    @State private var meDetails: MeDetails?
     
     var body: some View {
         NavigationView {
@@ -55,15 +56,6 @@ struct AccountView: View {
                             AccountRow(label: "Apellido", value: "Doe", isEditable: false)
                             AccountRow(label: "Rol", value: "Usuario", isEditable: false)
                             AccountRow(label: "Correo", value: "johndoe@example.com", isEditable: false)
-                            if let accessToken = TokenManager.accessToken {
-                                            Text(accessToken)
-                                                .font(.headline)
-                                                .padding()
-                            } else {
-                                Text("No Access Token Available")
-                                    .font(.headline)
-                                    .padding()
-                            }
 
                             VStack(alignment: .center) {                                 Button(action: {
                                     

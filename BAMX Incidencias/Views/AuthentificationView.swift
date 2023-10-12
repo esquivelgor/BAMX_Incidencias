@@ -9,14 +9,15 @@ import SwiftUI
 
 struct AuthentificationView: View {
     @State private var isShowingDetailView = false
-    @StateObject private var loginVM =  LoginViewModel()
+    @StateObject var loginVM = LoginViewModel()
+    @StateObject private var meVM = GetMeViewModel()
     
     @State private var showLoginAlert = false
     @State private var showPasswordAlert = false
     
     var body: some View {
         if loginVM.isAuthenticated {
-            AppHome()
+            AppHome().environmentObject(loginVM)
         } else {
             NavigationView {
                 ZStack {
@@ -52,6 +53,7 @@ struct AuthentificationView: View {
                             
                             Button("Log in"){
                                 loginVM.login()
+                                meVM.getMe()
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                                     if !loginVM.isAuthenticated {
                                         showLoginAlert = true
@@ -90,7 +92,9 @@ struct AuthentificationView: View {
                 
             }
         }
+        
     }
+    
 }
 
 struct Authentification_Previews: PreviewProvider {
