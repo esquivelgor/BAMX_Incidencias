@@ -27,7 +27,7 @@ class LoginViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.isAuthenticated = true
                 print("Login Done")
-                print(UserDefaults.standard.string(forKey: "access_token"))
+                print(UserDefaults.standard.string(forKey: "access_token") ?? "Empty")
                 
             }
         case .failure(let error):
@@ -35,7 +35,6 @@ class LoginViewModel: ObservableObject {
             self.loginAlert = true
             self.invalid = true
             print("Not login")
-            print(UserDefaults.standard.string(forKey: "access_token"))
         }
         }
     }

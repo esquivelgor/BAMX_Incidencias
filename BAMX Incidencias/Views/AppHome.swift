@@ -72,6 +72,7 @@ struct AppHome: View {
                             Spacer()
                             
                             SideMenuView()
+                                .environmentObject(loginVM)
                                 .offset(x: showMenu ? 0 : UIScreen.main.bounds.width)
                                 .animation(.easeInOut(duration: 0.4), value: showMenu)
                         }

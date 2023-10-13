@@ -74,7 +74,6 @@ class Webservice {
         }
         
         let body = GetEmailRequestBody(email: email)
-        print(body)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -103,30 +102,38 @@ class Webservice {
         } .resume()
     }
     
-    func getMe(access_token: String, completion: @escaping (Result<[MeDetails], NetworkError>) -> ()) {
+    func getMe(access_token: String, completion: @escaping (Result<MeDetails, NetworkError>) -> Void) {
         guard let url = URL(string: "https://food-bank-api.onrender.com/me") else {
             completion(.failure(.invalidURL))
             return
         }
-        
+
         var request = URLRequest(url: url)
-        request.addValue("Bearer \(access_token)", forHTTPHeaderField: "Authorization")
-        
+        request.httpMethod = "GET"
+        request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+
+        request.setValue(
+            "application/json;charset=utf-8",
+            forHTTPHeaderField: "Content-Type"
+        )
+
         URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            guard let data = data, error == nil else {
-                completion(.failure(.noData))
-                return
-            }
-            
-            guard let me = try? JSONDecoder().decode([MeDetails].self, from: data) else {
+            do {
+                if let error = error {
+                    throw error
+                }
+                guard let data = data else {
+                    throw NetworkError.noData
+                }
+                let me = try JSONDecoder().decode(MeDetails.self, from: data) // Decode as an array
+                completion(.success(me))
+            } catch {
                 completion(.failure(.decodingError))
-                return
             }
-            
-            completion(.success(me))
         }.resume()
     }
+
+
         
     
     

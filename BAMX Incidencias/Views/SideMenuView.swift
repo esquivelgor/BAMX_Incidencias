@@ -2,7 +2,8 @@ import SwiftUI
 
 struct SideMenuView: View {
     
-    @ObservedObject var loginVM = LoginViewModel()
+    @EnvironmentObject var loginVM : LoginViewModel
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
             NavigationLink(destination: AccountView()){

@@ -27,14 +27,14 @@ struct UserDetails: Codable {
 }
 
 struct MeDetails: Codable {
-    let _id: String?
+    let _id: String
     let first_name: String
     let last_name: String
     let email: String
     let role: String
     let identification: String
     let password: String
-    let created_by: String?
+    let created_by: String
     let last_login: String
     let created_at: String
     let updated_at: String
