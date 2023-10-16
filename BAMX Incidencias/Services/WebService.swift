@@ -31,6 +31,12 @@ struct GetEmailRequestBody: Codable {
     let email: String
 }
 
+struct TicketRequestBody: Codable {
+    let topic: String
+    let description: String
+    let urgency: String
+}
+
 class Webservice {
     
     func login(username: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
@@ -133,10 +139,33 @@ class Webservice {
         }.resume()
     }
 
-
+    func postTicket(topic: String, description: String, urgency: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
+        guard let url = URL(string: "https://food-bank-api.onrender.com/tickets") else {
+            completion(.failure(.invalidURL))
+            return
+        }
         
-    
-    
+        let body = TicketRequestBody(topic: topic, description: description, urgency: urgency)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONEncoder().encode(body)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        
+            guard let data = data, error == nil else {
+                completion(.failure(.custom(errorMessage:"Sin informacion")))
+                return
+            }
+        
+            if let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) {
+                completion(.success("Ticket successfully created"))
+            } else {
+                completion(.failure(.custom(errorMessage: "Failed to create ticket")))
+            }
+        } .resume()
+    }
     
 }
 

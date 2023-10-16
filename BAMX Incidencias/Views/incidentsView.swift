@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+import Foundation
+
+class WebService {
+    static func postTicket(topic: String, description: String, urgency: String, completion: @escaping (Result<String, Error>) -> Void) {
+    }
+}
+
 struct incidentsView: View {
     
     @State private var topic = ""
@@ -101,6 +108,7 @@ struct incidentsView: View {
                                     if isFormValid {
                                         showAlert = true
                                         showNegativeAlert = false
+                                        submitTicket()
                                         print("a")
                                     } else {
                                         showAlert = true
@@ -182,7 +190,16 @@ struct incidentsView: View {
       }
         .navigationBarBackButtonHidden(true)
     }
-    
+    func submitTicket() {
+        WebService.postTicket(topic: topic, description: description, urgency: selectedPriority) { result in
+            switch result {
+            case .success(let message):
+                print(message)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 
