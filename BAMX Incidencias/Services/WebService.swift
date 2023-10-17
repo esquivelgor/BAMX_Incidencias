@@ -31,7 +31,20 @@ struct GetEmailRequestBody: Codable {
     let email: String
 }
 
+struct UpdateRequestBody: Codable {
+    let state: String
+}
+
+//struct TicketRequestBody: Codable {
+//    let title: String
+//    let category: String
+//    let description: String
+//    let urgency: String
+//}
+
 class Webservice {
+    
+    // Post
     
     func login(username: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         guard let url = URL(string: "https://food-bank-api.onrender.com/login") else {
@@ -66,6 +79,40 @@ class Webservice {
             completion(.success(token))
         } .resume()
     }
+    
+    //func postTicket(access_token: String, topic: String, description: String, urgency: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
+    //    guard let url = URL(string: "https://food-bank-api.onrender.com/tickets") else {
+    //        completion(.failure(.invalidURL))
+    //        return
+    //    }
+    //
+    //    var request = URLRequest(url: url)
+    //    request.httpMethod = "POST"
+    //    request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+    //
+    //    request.setValue(
+    //        "application/json;charset=utf-8",
+    //        forHTTPHeaderField: "Content-Type"
+    //    )
+    //    let body = TicketRequestBody(title: topic, description: description, urgency: urgency)
+    //
+    //    URLSession.shared.dataTask(with: request) { _, response, error in
+    //        if let error = error {
+    //            completion(.failure(NetworkError.invalidURL))
+    //            return
+    //        }
+    //
+    //        guard let httpResponse = response as? HTTPURLResponse else {
+    //            completion(.failure(NetworkError.decodingError))
+    //            return
+    //        }
+    //
+    //        completion(.success(httpResponse.statusCode))
+    //    }.resume()
+    //
+    //}
+    //
+    // Get
     
     func sendEmail(email: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         guard let url = URL(string: "https://food-bank-api.onrender.com/requests/auth") else {
@@ -163,7 +210,40 @@ class Webservice {
             }
         }.resume()
     }
-
+    
+    // Patch
+    
+    func patchRequests(access_token: String, state: String,_id: String, topic: String, description: String, urgency: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
+        guard let url = URL(string: "https://food-bank-api.onrender.com/tickets/\(_id)") else {
+            completion(.failure(.invalidURL))
+            return
+        }
+    
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+    
+        request.setValue(
+            "application/json;charset=utf-8",
+            forHTTPHeaderField: "Content-Type"
+        )
+        let body = UpdateRequestBody(state: state)
+    
+        URLSession.shared.dataTask(with: request) { _, response, error in
+            if let error = error {
+                completion(.failure(NetworkError.invalidURL))
+                return
+            }
+    
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(NetworkError.decodingError))
+                return
+            }
+    
+            completion(.success(httpResponse.statusCode))
+        }.resume()
+    
+    }
         
     
     

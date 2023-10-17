@@ -14,72 +14,10 @@
             filePath = "BAMX Incidencias/Services/Webservice.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "login(username:password:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9AA27D7A-7828-4B33-A04E-FE31C439455E - 13af910155b5b6cd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BAMX_Incidencias.Webservice.login(username: Swift.String, password: Swift.String, completion: (Swift.Result&lt;Swift.String, BAMX_Incidencias.AuthenticationError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BAMX Incidencias"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user245584/Documents/BAMX_Incidencias/BAMX%20Incidencias/Services/Webservice.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "184">
-               </Location>
-               <Location
-                  uuid = "9AA27D7A-7828-4B33-A04E-FE31C439455E - 13af910155b5b6cd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BAMX_Incidencias.Webservice.login(username: Swift.String, password: Swift.String, completion: (Swift.Result&lt;Swift.String, BAMX_Incidencias.AuthenticationError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BAMX Incidencias"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user245584/Documents/BAMX_Incidencias/BAMX%20Incidencias/Services/Webservice.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "236">
-               </Location>
-               <Location
-                  uuid = "9AA27D7A-7828-4B33-A04E-FE31C439455E - 13af910155b5b6cd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BAMX_Incidencias.Webservice.login(username: Swift.String, password: Swift.String, completion: (Swift.Result&lt;Swift.String, BAMX_Incidencias.AuthenticationError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BAMX Incidencias"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user245584/Documents/BAMX_Incidencias/BAMX%20Incidencias/Services/Webservice.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "216">
-               </Location>
-               <Location
-                  uuid = "9AA27D7A-7828-4B33-A04E-FE31C439455E - 13af910155b5b6cd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BAMX_Incidencias.Webservice.login(username: Swift.String, password: Swift.String, completion: (Swift.Result&lt;Swift.String, BAMX_Incidencias.AuthenticationError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BAMX Incidencias"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user245584/Documents/BAMX_Incidencias/BAMX%20Incidencias/Services/Webservice.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "268">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -92,42 +30,10 @@
             filePath = "BAMX Incidencias/Services/WebService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "sendEmail(email:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D3A057B0-A1D6-4705-9473-ED8F270D9542 - a4a5718d05ba3422"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BAMX_Incidencias.Webservice.sendEmail(email: Swift.String, completion: (Swift.Result&lt;BAMX_Incidencias.UserDetails, BAMX_Incidencias.AuthenticationError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BAMX Incidencias"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user245584/Desktop/BAMX_Incidencias/BAMX%20Incidencias/Services/WebService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "76"
-                  endingLineNumber = "76"
-                  offsetFromSymbolStart = "476">
-               </Location>
-               <Location
-                  uuid = "D3A057B0-A1D6-4705-9473-ED8F270D9542 - 81e2e8d236ebe52d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BAMX_Incidencias.Webservice.sendEmail(email: Swift.String, completion: (Swift.Result&lt;Swift.String, BAMX_Incidencias.AuthenticationError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BAMX Incidencias"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user245584/Desktop/BAMX_Incidencias/BAMX%20Incidencias/Services/WebService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "76"
-                  endingLineNumber = "76"
-                  offsetFromSymbolStart = "508">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
