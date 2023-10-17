@@ -7,6 +7,8 @@
 
 import Foundation
 
+// ----------------- User -----------------
+
 struct UserResponse: Codable {
     let user: UserDetails
     let access_token: String?
@@ -36,6 +38,43 @@ struct MeDetails: Codable {
     let password: String
     let created_by: String
     let last_login: String
+    let created_at: String
+    let updated_at: String
+}
+
+// ----------------- Requests/Tickets -----------------
+
+struct TicketData: Codable {
+    let items: [Ticket]
+    let total: Int
+    let page: Int
+    let size: Int
+    let pages: Int
+}
+
+struct Ticket: Codable {
+    let _id: String
+    let type: String
+    let email: String?
+    let state: String
+    let title: String
+    let description: String
+    let created_by: String?
+    let proccessed_by: String?
+    let created_at: String
+    let updated_at: String
+}
+
+struct IncidentData: Codable {
+    let _id: String
+    let title: String
+    let description: String
+    let urgency: String
+    let state: String
+    let images: [String]
+    let created_by: String
+    let assigned_to: String?
+    let time_solved: String?
     let created_at: String
     let updated_at: String
 }

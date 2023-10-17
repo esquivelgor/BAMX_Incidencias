@@ -31,13 +31,20 @@ struct GetEmailRequestBody: Codable {
     let email: String
 }
 
-struct TicketRequestBody: Codable {
-    let topic: String
-    let description: String
-    let urgency: String
+struct UpdateRequestBody: Codable {
+    let state: String
 }
 
+//struct TicketRequestBody: Codable {
+//    let title: String
+//    let category: String
+//    let description: String
+//    let urgency: String
+//}
+
 class Webservice {
+    
+    // Post
     
     func login(username: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         guard let url = URL(string: "https://food-bank-api.onrender.com/login") else {
@@ -72,6 +79,40 @@ class Webservice {
             completion(.success(token))
         } .resume()
     }
+    
+    //func postTicket(access_token: String, topic: String, description: String, urgency: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
+    //    guard let url = URL(string: "https://food-bank-api.onrender.com/tickets") else {
+    //        completion(.failure(.invalidURL))
+    //        return
+    //    }
+    //
+    //    var request = URLRequest(url: url)
+    //    request.httpMethod = "POST"
+    //    request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+    //
+    //    request.setValue(
+    //        "application/json;charset=utf-8",
+    //        forHTTPHeaderField: "Content-Type"
+    //    )
+    //    let body = TicketRequestBody(title: topic, description: description, urgency: urgency)
+    //
+    //    URLSession.shared.dataTask(with: request) { _, response, error in
+    //        if let error = error {
+    //            completion(.failure(NetworkError.invalidURL))
+    //            return
+    //        }
+    //
+    //        guard let httpResponse = response as? HTTPURLResponse else {
+    //            completion(.failure(NetworkError.decodingError))
+    //            return
+    //        }
+    //
+    //        completion(.success(httpResponse.statusCode))
+    //    }.resume()
+    //
+    //}
+    //
+    // Get
     
     func sendEmail(email: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         guard let url = URL(string: "https://food-bank-api.onrender.com/requests/auth") else {
@@ -138,34 +179,75 @@ class Webservice {
             }
         }.resume()
     }
-
-    func postTicket(topic: String, description: String, urgency: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
-        guard let url = URL(string: "https://food-bank-api.onrender.com/tickets") else {
+    
+    func getRequests(access_token: String, completion: @escaping (Result<TicketData, NetworkError>) -> Void) {
+        guard let url = URL(string: "https://food-bank-api.onrender.com/requests") else {
             completion(.failure(.invalidURL))
             return
         }
-        
-        let body = TicketRequestBody(topic: topic, description: description, urgency: urgency)
-        
+
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "GET"
+        request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+
+        request.setValue(
+            "application/json;charset=utf-8",
+            forHTTPHeaderField: "Content-Type"
+        )
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            do {
+                if let error = error {
+                    throw error
+                }
+                guard let data = data else {
+                    throw NetworkError.noData
+                }
+                let decodedData = try JSONDecoder().decode(TicketData.self, from: data) // Decode as an array
+                completion(.success(decodedData))
+            } catch {
+                completion(.failure(.decodingError))
+            }
+        }.resume()
+    }
+    
+    // Patch
+    
+    func patchRequests(access_token: String, state: String,_id: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
+        guard let url = URL(string: "https://food-bank-api.onrender.com/tickets/\(_id)") else {
+            completion(.failure(.invalidURL))
+            return
+        }
+    
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+    
+        request.setValue(
+            "application/json;charset=utf-8",
+            forHTTPHeaderField: "Content-Type"
+        )
+        let body = UpdateRequestBody(state: state)
         request.httpBody = try? JSONEncoder().encode(body)
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-        
-            guard let data = data, error == nil else {
-                completion(.failure(.custom(errorMessage:"Sin informacion")))
+        URLSession.shared.dataTask(with: request) { _, response, error in
+            if error != nil {
+                completion(.failure(NetworkError.decodingError))
                 return
             }
-        
-            if let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) {
-                completion(.success("Ticket successfully created"))
-            } else {
-                completion(.failure(.custom(errorMessage: "Failed to create ticket")))
+    
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(NetworkError.decodingError))
+                return
             }
-        } .resume()
+    
+            completion(.success(httpResponse.statusCode))
+        }.resume()
+    
     }
+        
+    
+    
     
 }
 
