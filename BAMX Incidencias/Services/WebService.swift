@@ -211,10 +211,40 @@ class Webservice {
         }.resume()
     }
     
+    func getTickets(access_token: String, completion: @escaping (Result<IncidentResponse, NetworkError>) -> Void) {
+        guard let url = URL(string: "https://food-bank-api.onrender.com/requests") else {
+            completion(.failure(.invalidURL))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+
+        request.setValue(
+            "application/json;charset=utf-8",
+            forHTTPHeaderField: "Content-Type"
+        )
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            do {
+                if let error = error {
+                    throw error
+                }
+                guard let data = data else {
+                    throw NetworkError.noData
+                }
+                let decodedData = try JSONDecoder().decode(IncidentResponse.self, from: data) // Decode as an array
+                completion(.success(decodedData))
+            } catch {
+                completion(.failure(.decodingError))
+            }
+        }.resume()
+    }
     // Patch
     
     func patchRequests(access_token: String, state: String,_id: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
-        guard let url = URL(string: "https://food-bank-api.onrender.com/tickets/\(_id)") else {
+        guard let url = URL(string: "https://food-bank-api.onrender.com/requests/\(_id)") else {
             completion(.failure(.invalidURL))
             return
         }

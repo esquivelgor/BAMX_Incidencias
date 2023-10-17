@@ -30,7 +30,7 @@ struct SheetView: View {
                 Button("Aceptar") {
                     isPresented = false
                     patchRequestsVM._id = itemId
-                    patchRequestsVM.state = "accepted"
+                    patchRequestsVM.state = "approved"
                     patchRequestsVM.patchRequests()
                 }
                 .foregroundColor(.white)

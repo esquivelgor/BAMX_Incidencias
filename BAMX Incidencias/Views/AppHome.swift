@@ -102,12 +102,6 @@ struct AppHome: View {
                                 ScrollView(.vertical, showsIndicators: false) {
                                     ForEach(getRequestsVM.ticketData?.items.filter { $0.state == "approved" } ?? [], id: \._id) { item in
                                         TicketRowView(item: item)
-                                            .onTapGesture {
-                                                selectedItemId = item._id
-                                                selectedTitle = item.title
-                                                selectedDescription = item.description
-                                                isShowingSheet = true
-                                            }
                                         Rectangle()
                                             .frame(height: 0.5)
                                             .foregroundColor(Color.black)
@@ -120,12 +114,6 @@ struct AppHome: View {
                                 ScrollView(.vertical, showsIndicators: false) {
                                     ForEach(getRequestsVM.ticketData?.items.filter { $0.state == "rejected" } ?? [], id: \._id) { item in
                                         TicketRowView(item: item)
-                                            .onTapGesture {
-                                                selectedItemId = item._id
-                                                selectedTitle = item.title
-                                                selectedDescription = item.description
-                                                isShowingSheet = true
-                                            }
                                         Rectangle()
                                             .frame(height: 0.5)
                                             .foregroundColor(Color.black)
