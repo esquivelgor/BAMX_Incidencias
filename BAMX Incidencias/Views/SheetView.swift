@@ -17,38 +17,40 @@ struct SheetView: View {
     @StateObject var patchRequestsVM = PatchRequestsViewModel()
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .center, spacing: 12) {
             Text(title)
                 .font(.headline)
+                .multilineTextAlignment(.center)
             
             Text(description)
                 .font(.body)
-            
-            HStack {
-                Button("Accept") {
+                .multilineTextAlignment(.center)
+
+            HStack(alignment: .center, spacing: 16) {
+                Button("Aceptar") {
                     isPresented = false
                     patchRequestsVM._id = itemId
                     patchRequestsVM.state = "accepted"
                     patchRequestsVM.patchRequests()
                 }
-                .foregroundColor(.black)
-                .padding(8)
-                .background(RoundedRectangle(cornerRadius: 8).fill(Color.green))
+                .foregroundColor(.white)
+                .padding(10)
+                .background(RoundedRectangle(cornerRadius: 8).fill(Color(hex: 0x29A35)))
                 
-                Button("Reject") {
+                Button("Rechazar") {
                     isPresented = false
                     patchRequestsVM._id = itemId
                     patchRequestsVM.state = "rejected"
                     patchRequestsVM.patchRequests()
                 }
-                .foregroundColor(.black)
-                .padding(8)
-                .background(RoundedRectangle(cornerRadius: 8).fill(Color.red))
-                
-                Spacer()
-                
+                .foregroundColor(.white)
+                .padding(10)
+                .background(RoundedRectangle(cornerRadius: 8).fill(Color(hex: 0xE2032C)))
             }
+            Spacer()
         }
+        .padding(16)
+
         .padding()
         .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
         .shadow(radius: 3)
