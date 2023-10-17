@@ -14,6 +14,11 @@ struct AppHome: View {
     @EnvironmentObject var loginVM : LoginViewModel
     @StateObject var getRequestsVM = GetRequestsViewModel()
     
+    @State private var selectedItemId: String?
+    @State private var selectedTitle: String?
+    @State private var selectedDescription: String?
+    @State private var isShowingSheet = false
+    
     var body: some View {
         if !loginVM.isAuthenticated {
             AuthentificationView()
@@ -79,6 +84,12 @@ struct AppHome: View {
                                 ScrollView(.vertical, showsIndicators: false) {
                                     ForEach(getRequestsVM.ticketData?.items.filter { $0.state == "pending" } ?? [], id: \._id) { item in
                                         TicketRowView(item: item)
+                                            .onTapGesture {
+                                                selectedItemId = item._id
+                                                selectedTitle = item.title
+                                                selectedDescription = item.description
+                                                isShowingSheet = true
+                                            }
                                         Rectangle()
                                             .frame(height: 0.5)
                                             .foregroundColor(Color.black)
@@ -91,6 +102,12 @@ struct AppHome: View {
                                 ScrollView(.vertical, showsIndicators: false) {
                                     ForEach(getRequestsVM.ticketData?.items.filter { $0.state == "approved" } ?? [], id: \._id) { item in
                                         TicketRowView(item: item)
+                                            .onTapGesture {
+                                                selectedItemId = item._id
+                                                selectedTitle = item.title
+                                                selectedDescription = item.description
+                                                isShowingSheet = true
+                                            }
                                         Rectangle()
                                             .frame(height: 0.5)
                                             .foregroundColor(Color.black)
@@ -103,6 +120,12 @@ struct AppHome: View {
                                 ScrollView(.vertical, showsIndicators: false) {
                                     ForEach(getRequestsVM.ticketData?.items.filter { $0.state == "rejected" } ?? [], id: \._id) { item in
                                         TicketRowView(item: item)
+                                            .onTapGesture {
+                                                selectedItemId = item._id
+                                                selectedTitle = item.title
+                                                selectedDescription = item.description
+                                                isShowingSheet = true
+                                            }
                                         Rectangle()
                                             .frame(height: 0.5)
                                             .foregroundColor(Color.black)
@@ -113,7 +136,12 @@ struct AppHome: View {
                         }
                         .onAppear(perform: getRequestsVM.getRequests)
                         .frame(height: 250)
-                    
+                        .sheet(isPresented: $isShowingSheet) {
+                            if let itemId = selectedItemId {
+                                SheetView(itemId: itemId, title: selectedTitle ?? "Null", description: selectedDescription ?? "Null", isPresented: $isShowingSheet)
+                            }
+                        }
+                        
                         Spacer()
                         
                     }

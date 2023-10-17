@@ -213,7 +213,7 @@ class Webservice {
     
     // Patch
     
-    func patchRequests(access_token: String, state: String,_id: String, topic: String, description: String, urgency: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
+    func patchRequests(access_token: String, state: String,_id: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
         guard let url = URL(string: "https://food-bank-api.onrender.com/tickets/\(_id)") else {
             completion(.failure(.invalidURL))
             return
@@ -228,10 +228,11 @@ class Webservice {
             forHTTPHeaderField: "Content-Type"
         )
         let body = UpdateRequestBody(state: state)
-    
+        request.httpBody = try? JSONEncoder().encode(body)
+        
         URLSession.shared.dataTask(with: request) { _, response, error in
-            if let error = error {
-                completion(.failure(NetworkError.invalidURL))
+            if error != nil {
+                completion(.failure(NetworkError.decodingError))
                 return
             }
     
