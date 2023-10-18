@@ -38,7 +38,7 @@ class GetTicketsViewModel: ObservableObject {
                     if let encodedData = try? encoder.encode(incidentResponse) {
                         defaults.set(encodedData, forKey: "incidentResponse")
                     }
-                    print("Data done!\(incidentResponse.total)")
+                    
                     DispatchQueue.main.async {
                         self.incidentResponse = incidentResponse
                     }

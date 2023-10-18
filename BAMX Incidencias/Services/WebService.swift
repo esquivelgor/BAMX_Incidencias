@@ -234,15 +234,9 @@ class Webservice {
                 guard let data = data else {
                     throw NetworkError.noData
                 }
-                if let dataString = String(data: data, encoding: .utf8) {
-                        print("Received data: \(dataString)")
-                } else {
-                    print("Data could not be converted to a string.")
-                }
                 let decodedData = try JSONDecoder().decode(IncidentResponse.self, from: data) // Decode as an array
                 completion(.success(decodedData))
             } catch {
-                print("Error thrown in the following block: \(error)")
                 completion(.failure(.decodingError))
             }
         }.resume()

@@ -38,13 +38,10 @@ struct AppHome: View {
                         Section(header: Text("Urgencia alta").font(.headline)) {
                             ScrollView(.vertical, showsIndicators: false) {
                                 ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "high"} ?? [], id: \._id) { item in
-                                    IncidentRowView(item: item)
-                                    //.onTapGesture {
-                                    //    selectedItemId = item.id
-                                    //    selectedTitle = item.title
-                                    //    selectedDescription = item.description
-                                    //    isShowingSheet = true
-                                    //}
+                                    NavigationLink(destination: CreatedIncidenciaView(item: item)) {
+                                        IncidentRowView(item: item)
+                                    }
+                                    .buttonStyle(.plain)
                                     Rectangle()
                                         .frame(height: 0.5)
                                         .foregroundColor(Color.black)
@@ -55,13 +52,10 @@ struct AppHome: View {
                         Section(header: Text("Urgencia media").font(.headline)) {
                             ScrollView(.vertical, showsIndicators: false) {
                                 ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "medium"} ?? [], id: \._id) { item in
-                                    IncidentRowView(item: item)
-                                    //.onTapGesture {
-                                    //    selectedItemId = item.id
-                                    //    selectedTitle = item.title
-                                    //    selectedDescription = item.description
-                                    //    isShowingSheet = true
-                                    //}
+                                    NavigationLink(destination: CreatedIncidenciaView(item: item)) {
+                                        IncidentRowView(item: item)
+                                    }
+                                    .buttonStyle(.plain)
                                     Rectangle()
                                         .frame(height: 0.5)
                                         .foregroundColor(Color.black)
@@ -72,13 +66,10 @@ struct AppHome: View {
                         Section(header: Text("Urgencia baja").font(.headline)) {
                             ScrollView(.vertical, showsIndicators: false) {
                                 ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "low"} ?? [], id: \._id) { item in
-                                    IncidentRowView(item: item)
-                                    //.onTapGesture {
-                                    //    selectedItemId = item.id
-                                    //    selectedTitle = item.title
-                                    //    selectedDescription = item.description
-                                    //    isShowingSheet = true
-                                    //}
+                                    NavigationLink(destination: CreatedIncidenciaView(item: item)) {
+                                        IncidentRowView(item: item)
+                                    }
+                                    .buttonStyle(.plain)
                                     Rectangle()
                                         .frame(height: 0.5)
                                         .foregroundColor(Color.black)

@@ -38,7 +38,7 @@ class GetRequestsViewModel: ObservableObject {
                     if let encodedData = try? encoder.encode(requestData) {
                         defaults.set(encodedData, forKey: "requestData")
                     }
-                    print("Data done!\(requestData.total)")
+                    
                     DispatchQueue.main.async {
                         self.requestData = requestData
                     }

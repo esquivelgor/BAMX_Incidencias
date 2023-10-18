@@ -26,9 +26,6 @@ class LoginViewModel: ObservableObject {
             defaults.setValue(token, forKey: "access_token")
             DispatchQueue.main.async {
                 self.isAuthenticated = true
-                print("Login Done")
-                print(UserDefaults.standard.string(forKey: "access_token") ?? "Empty")
-                
             }
         case .failure(let error):
             print(error.localizedDescription)
