@@ -44,15 +44,15 @@ struct MeDetails: Codable {
 
 // ----------------- Requests/Tickets -----------------
 
-struct TicketData: Codable {
-    let items: [Ticket]
+struct RequestData: Codable {
+    let items: [Requests]
     let total: Int
     let page: Int
     let size: Int
     let pages: Int
 }
 
-struct Ticket: Codable {
+struct Requests: Codable {
     let _id: String
     let type: String
     let email: String?

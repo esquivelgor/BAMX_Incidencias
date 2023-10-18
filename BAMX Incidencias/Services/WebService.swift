@@ -180,7 +180,7 @@ class Webservice {
         }.resume()
     }
     
-    func getRequests(access_token: String, completion: @escaping (Result<TicketData, NetworkError>) -> Void) {
+    func getRequests(access_token: String, completion: @escaping (Result<RequestData, NetworkError>) -> Void) {
         guard let url = URL(string: "https://food-bank-api.onrender.com/requests") else {
             completion(.failure(.invalidURL))
             return
@@ -203,7 +203,7 @@ class Webservice {
                 guard let data = data else {
                     throw NetworkError.noData
                 }
-                let decodedData = try JSONDecoder().decode(TicketData.self, from: data) // Decode as an array
+                let decodedData = try JSONDecoder().decode(RequestData.self, from: data) // Decode as an array
                 completion(.success(decodedData))
             } catch {
                 completion(.failure(.decodingError))

@@ -35,24 +35,21 @@ struct AppHome: View {
                     Divider()
                     
                     List {
-                        Section(header: Text("Pendientes").font(.headline)) {
-                            ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(getRequestsVM.ticketData?.items.filter { $0.state == "pending" } ?? [], id: \._id) { item in
-                                    TicketRowView(item: item)
-                                        .onTapGesture {
-                                            selectedItemId = item._id
-                                            selectedTitle = item.title
-                                            selectedDescription = item.description
-                                            isShowingSheet = true
-                                        }
-                                    Rectangle()
-                                        .frame(height: 0.5)
-                                        .foregroundColor(Color.black)
-                                }
+                        ScrollView(.vertical, showsIndicators: false) {
+                            ForEach(getRequestsVM.requestData?.items.filter { $0.state == "pending" } ?? [], id: \._id) { item in
+                                RequestsRowView(item: item)
+                                    .onTapGesture {
+                                        selectedItemId = item._id
+                                        selectedTitle = item.title
+                                        selectedDescription = item.description
+                                        isShowingSheet = true
+                                    }
+                                Rectangle()
+                                    .frame(height: 0.5)
+                                    .foregroundColor(Color.black)
                             }
-                            .frame(height: 200)
                         }
-                        
+                        .frame(height: 200)
                     }
                     .onAppear(perform: getRequestsVM.getRequests)
                     .frame(height: 300)
@@ -77,8 +74,8 @@ struct AppHome: View {
                     List {
                         Section(header: Text("Pendientes").font(.headline)) {
                             ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(getRequestsVM.ticketData?.items.filter { $0.state == "pending" } ?? [], id: \._id) { item in
-                                    TicketRowView(item: item)
+                                ForEach(getRequestsVM.requestData?.items.filter { $0.state == "pending" } ?? [], id: \._id) { item in
+                                    RequestsRowView(item: item)
                                         .onTapGesture {
                                             selectedItemId = item._id
                                             selectedTitle = item.title
@@ -95,8 +92,8 @@ struct AppHome: View {
                         
                         Section(header: Text("Aprobadas").font(.headline)) {
                             ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(getRequestsVM.ticketData?.items.filter { $0.state == "approved" } ?? [], id: \._id) { item in
-                                    TicketRowView(item: item)
+                                ForEach(getRequestsVM.requestData?.items.filter { $0.state == "approved" } ?? [], id: \._id) { item in
+                                    RequestsRowView(item: item)
                                     Rectangle()
                                         .frame(height: 0.5)
                                         .foregroundColor(Color.black)
@@ -107,8 +104,8 @@ struct AppHome: View {
                         
                         Section(header: Text("Rechazadas").font(.headline)) {
                             ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(getRequestsVM.ticketData?.items.filter { $0.state == "rejected" } ?? [], id: \._id) { item in
-                                    TicketRowView(item: item)
+                                ForEach(getRequestsVM.requestData?.items.filter { $0.state == "rejected" } ?? [], id: \._id) { item in
+                                    RequestsRowView(item: item)
                                     Rectangle()
                                         .frame(height: 0.5)
                                         .foregroundColor(Color.black)
@@ -176,8 +173,8 @@ struct AppHome: View {
         
     }
     
-    struct TicketRowView: View {
-        let item: Ticket // Assuming you have a Ticket model
+    struct RequestsRowView: View {
+        let item: Requests
 
         let dateFormatter: DateFormatter = {
             let formatter = DateFormatter()
