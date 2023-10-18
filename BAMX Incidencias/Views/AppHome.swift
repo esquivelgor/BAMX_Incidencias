@@ -35,21 +35,58 @@ struct AppHome: View {
                     Divider()
                     
                     List {
-                        ScrollView(.vertical, showsIndicators: false) {
-                            ForEach(getTicketsVM.incidentResponse?.items ?? [], id: \._id) { item in
-                                IncidentRowView(item: item)
+                        Section(header: Text("Urgencia alta").font(.headline)) {
+                            ScrollView(.vertical, showsIndicators: false) {
+                                ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "high"} ?? [], id: \._id) { item in
+                                    IncidentRowView(item: item)
                                     //.onTapGesture {
                                     //    selectedItemId = item.id
                                     //    selectedTitle = item.title
                                     //    selectedDescription = item.description
                                     //    isShowingSheet = true
                                     //}
-                                Rectangle()
-                                    .frame(height: 0.5)
-                                    .foregroundColor(Color.black)
+                                    Rectangle()
+                                        .frame(height: 0.5)
+                                        .foregroundColor(Color.black)
+                                }
                             }
+                            .frame(height: 120)
                         }
-                        .frame(height: 200)
+                        Section(header: Text("Urgencia media").font(.headline)) {
+                            ScrollView(.vertical, showsIndicators: false) {
+                                ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "medium"} ?? [], id: \._id) { item in
+                                    IncidentRowView(item: item)
+                                    //.onTapGesture {
+                                    //    selectedItemId = item.id
+                                    //    selectedTitle = item.title
+                                    //    selectedDescription = item.description
+                                    //    isShowingSheet = true
+                                    //}
+                                    Rectangle()
+                                        .frame(height: 0.5)
+                                        .foregroundColor(Color.black)
+                                }
+                            }
+                            .frame(height: 120)
+                        }
+                        Section(header: Text("Urgencia baja").font(.headline)) {
+                            ScrollView(.vertical, showsIndicators: false) {
+                                ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "low"} ?? [], id: \._id) { item in
+                                    IncidentRowView(item: item)
+                                    //.onTapGesture {
+                                    //    selectedItemId = item.id
+                                    //    selectedTitle = item.title
+                                    //    selectedDescription = item.description
+                                    //    isShowingSheet = true
+                                    //}
+                                    Rectangle()
+                                        .frame(height: 0.5)
+                                        .foregroundColor(Color.black)
+                                }
+                            }
+                            .frame(height: 120)
+                        }
+                        
                     }
                     .onAppear(perform: getTicketsVM.getTickets)
                     .frame(height: 300)
@@ -222,14 +259,12 @@ struct AppHome: View {
                 Text(item.description ?? "Sin descripcion")
                     .font(.subheadline)
                 
-                Text(item.state)
+                Text("Estado actual: \(item.state)")
                     .font(.subheadline)
                 
-                Text(item.urgency)
-                    .font(.subheadline)
                 
                 if let createdAt = dateFormatter.date(from: item.created_at) {
-                    Text("Created At: \(formatDate(createdAt))")
+                    Text("Fecha: \(formatDate(createdAt))")
                         .font(.subheadline)
                 }
             }
