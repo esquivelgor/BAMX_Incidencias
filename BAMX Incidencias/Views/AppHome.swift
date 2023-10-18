@@ -11,6 +11,7 @@ struct AppHome: View {
     
     @EnvironmentObject var loginVM : LoginViewModel
 
+    @State private var isShowingSheet = false
     @State private var showMenu: Bool = false
     @State private var showFloatingMenu: Bool = true
     
@@ -20,7 +21,6 @@ struct AppHome: View {
     @State private var selectedItemId: String?
     @State private var selectedTitle: String?
     @State private var selectedDescription: String?
-    @State private var isShowingSheet = false
     
     var body: some View {
         NavigationView {
@@ -36,14 +36,14 @@ struct AppHome: View {
                     
                     List {
                         ScrollView(.vertical, showsIndicators: false) {
-                            ForEach(getRequestsVM.requestData?.items.filter { $0.state == "pending" } ?? [], id: \._id) { item in
-                                RequestsRowView(item: item)
-                                    .onTapGesture {
-                                        selectedItemId = item._id
-                                        selectedTitle = item.title
-                                        selectedDescription = item.description
-                                        isShowingSheet = true
-                                    }
+                            ForEach(getTicketsVM.incidentResponse?.items ?? [], id: \._id) { item in
+                                IncidentRowView(item: item)
+                                    //.onTapGesture {
+                                    //    selectedItemId = item.id
+                                    //    selectedTitle = item.title
+                                    //    selectedDescription = item.description
+                                    //    isShowingSheet = true
+                                    //}
                                 Rectangle()
                                     .frame(height: 0.5)
                                     .foregroundColor(Color.black)
@@ -51,13 +51,13 @@ struct AppHome: View {
                         }
                         .frame(height: 200)
                     }
-                    .onAppear(perform: getRequestsVM.getRequests)
+                    .onAppear(perform: getTicketsVM.getTickets)
                     .frame(height: 300)
-                    .sheet(isPresented: $isShowingSheet) {
-                        if let itemId = selectedItemId {
-                            SheetView(itemId: itemId, title: selectedTitle ?? "Null", description: selectedDescription ?? "Null", isPresented: $isShowingSheet)
-                        }
-                    }
+                    //.sheet(isPresented: $isShowingSheet) {
+                    //    if let itemId = selectedItemId {
+                    //        SheetView(itemId: itemId, title: selectedTitle ?? "Null", description: selectedDescription ?? "Null", isPresented: $isShowingSheet)
+                    //    }
+                    //}
                     
                     Spacer()
                     Divider()
@@ -204,7 +204,44 @@ struct AppHome: View {
             return formatter.string(from: date)
         }
     }
-}
+    
+    struct IncidentRowView: View {
+        let item: Incident
+
+        let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+            return formatter
+        }()
+        
+        var body: some View {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(item.title)
+                    .font(.headline)
+                
+                Text(item.description ?? "Sin descripcion")
+                    .font(.subheadline)
+                
+                Text(item.state)
+                    .font(.subheadline)
+                
+                Text(item.urgency)
+                    .font(.subheadline)
+                
+                if let createdAt = dateFormatter.date(from: item.created_at) {
+                    Text("Created At: \(formatDate(createdAt))")
+                        .font(.subheadline)
+                }
+            }
+            .padding(8)
+        }
+        
+        private func formatDate(_ date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd, yyyy HH:mm a"
+            return formatter.string(from: date)
+        }
+    }}
 
 struct AppHome_Previews: PreviewProvider {
     static var previews: some View {

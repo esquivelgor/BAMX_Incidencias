@@ -67,9 +67,9 @@ struct Requests: Codable {
 // ------ Incidents
 
 struct Incident: Codable {
-    var id: String
+    var _id: String
     var title: String
-    var description: String
+    var description: String?
     var urgency: String
     var state: String
     var images: [IncidentImage]
