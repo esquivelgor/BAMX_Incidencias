@@ -8,7 +8,7 @@
 import Foundation
 
 class GetRequestsViewModel: ObservableObject {
-    @Published var ticketData: TicketData?
+    @Published var requestData: RequestData?
 
         init() {
             loadDetails()
@@ -16,10 +16,10 @@ class GetRequestsViewModel: ObservableObject {
 
         func loadDetails() {
             let defaults = UserDefaults.standard
-            if let storedData = defaults.data(forKey: "ticketData") {
+            if let storedData = defaults.data(forKey: "requestData") {
                 let decoder = JSONDecoder()
-                if let decoded = try? decoder.decode(TicketData.self, from: storedData) {
-                    ticketData = decoded
+                if let decoded = try? decoder.decode(RequestData.self, from: storedData) {
+                    requestData = decoded
                 }
             }
         }
@@ -32,15 +32,15 @@ class GetRequestsViewModel: ObservableObject {
         
         Webservice().getRequests(access_token: access_token) { result in
             switch result {
-            case .success(let ticketData):
+            case .success(let requestData):
                 do {
                     let encoder = JSONEncoder()
-                    if let encodedData = try? encoder.encode(ticketData) {
-                        defaults.set(encodedData, forKey: "ticketData")
+                    if let encodedData = try? encoder.encode(requestData) {
+                        defaults.set(encodedData, forKey: "requestData")
                     }
-                    print("Data done!\(ticketData.total)")
+                    
                     DispatchQueue.main.async {
-                        self.ticketData = ticketData
+                        self.requestData = requestData
                     }
                 }
             case .failure(let error):
