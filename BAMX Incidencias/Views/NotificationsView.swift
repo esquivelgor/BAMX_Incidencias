@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NotificationsView: View {
     @State private var showMenu: Bool = false
+    @State private var showFloatingMenu: Bool = true
+
     var body: some View {
         NavigationView {
         
@@ -69,6 +71,16 @@ struct NotificationsView: View {
             
           }
           .background(Color.black.opacity(showMenu ? 0.5 : 0))
+            // Floating Menu Button
+            if (showFloatingMenu == true) {
+                ZStack (alignment: .bottomTrailing){
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    FloatingMenu()
+                        .padding()
+                }
+            }
           
         }
         
