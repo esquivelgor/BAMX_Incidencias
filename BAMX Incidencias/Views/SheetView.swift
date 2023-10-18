@@ -36,7 +36,7 @@ struct SheetView: View {
                 .foregroundColor(.white)
                 .padding(10)
                 .background(RoundedRectangle(cornerRadius: 8).fill(Color(hex: 0x29A35)))
-                
+
                 Button("Rechazar") {
                     isPresented = false
                     patchRequestsVM._id = itemId

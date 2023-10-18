@@ -13,6 +13,7 @@ struct AppHome: View {
     @State private var showFloatingMenu: Bool = true
     @EnvironmentObject var loginVM : LoginViewModel
     @StateObject var getRequestsVM = GetRequestsViewModel()
+    @StateObject var getTicketsVM = GetTicketsViewModel()
     
     @State private var selectedItemId: String?
     @State private var selectedTitle: String?
@@ -26,50 +27,41 @@ struct AppHome: View {
             NavigationView {
                 ZStack {
                     VStack (spacing: 0){
+                        Divider()
                         Text("Incidencias")
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(Color(hex: 0xE2032C))
                             .padding(.top, 20)
                             .padding(.leading, 20)
-                        
+
                         Divider()
-                        
-                        ScrollView(.vertical) {
-                            VStack {
-                                // Table headers
-                                HStack (alignment: .center){
-                                    Text("Incidencia")
-                                        .frame(maxWidth: .infinity)
-                                    Text("Categorías")
-                                        .frame(maxWidth: .infinity)
-                                    Text("Estatus")
-                                        .frame(maxWidth: .infinity)
-                                }
-                                .font(Font.system(size: 18).weight(.bold))
-                                .padding(8)
-                                Rectangle()
-                                    .frame(height: 2)
-                                    .foregroundColor(Color.black)
-                                
-                                ForEach(0..<3) { rowIndex in
-                                    HStack {
-                                        Text("Incidencia \(rowIndex + 1)")
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                        Text("Categoría \(rowIndex + 1)")
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                        Text("Estatus \(rowIndex + 1)")
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                    }
-                                    .padding(8)
+
+                        List {
+                            ScrollView(.vertical, showsIndicators: false) {
+                                ForEach(getRequestsVM.ticketData?.items ?? [], id: \._id) { item in
+                                    TicketRowView(item: item)
+                                        .onTapGesture {
+                                            selectedItemId = item._id
+                                            selectedTitle = item.title
+                                            selectedDescription = item.description
+                                            isShowingSheet = true
+                                        }
                                     Rectangle()
-                                        .frame(height: 2)
+                                        .frame(height: 0.5)
                                         .foregroundColor(Color.black)
                                 }
                             }
-                            .padding(.horizontal, 16)
+                            .frame(height: 150)
                         }
-                        
+                        .onAppear(perform: getTicketsVM.getTickets)
+                        .frame(height: 400)
+                        .sheet(isPresented: $isShowingSheet) {
+                            if let itemId = selectedItemId {
+                                SheetView(itemId: itemId, title: selectedTitle ?? "Null", description: selectedDescription ?? "Null", isPresented: $isShowingSheet)
+                            }
+                        }
+
                         Text("Solicitudes")
                             .font(.title)
                             .fontWeight(.bold)
@@ -135,7 +127,7 @@ struct AppHome: View {
                             }
                         }
                         .onAppear(perform: getRequestsVM.getRequests)
-                        .frame(height: 250)
+                        .frame(height: 400)
                         .sheet(isPresented: $isShowingSheet) {
                             if let itemId = selectedItemId {
                                 SheetView(itemId: itemId, title: selectedTitle ?? "Null", description: selectedDescription ?? "Null", isPresented: $isShowingSheet)
