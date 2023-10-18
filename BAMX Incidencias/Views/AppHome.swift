@@ -13,6 +13,7 @@ struct AppHome: View {
     @State private var showFloatingMenu: Bool = true
     @EnvironmentObject var loginVM : LoginViewModel
     @StateObject var getRequestsVM = GetRequestsViewModel()
+    @StateObject var getTicketsVM = GetTicketsViewModel()
     
     @State private var selectedItemId: String?
     @State private var selectedTitle: String?

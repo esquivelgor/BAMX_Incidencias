@@ -65,18 +65,33 @@ struct Ticket: Codable {
     let updated_at: String
 }
 
-struct IncidentData: Codable {
-    let _id: String
-    let title: String
-    let description: String
-    let urgency: String
-    let state: String
-    let images: [String]
-    let created_by: String
-    let assigned_to: String?
-    let time_solved: String?
-    let created_at: String
-    let updated_at: String
+struct Incident: Codable {
+    var id: String
+    var title: String
+    var description: String
+    var urgency: String
+    var state: String
+    var images: [IncidentImage]
+    var category: String?
+    var created_by: String
+    var assigned_to: String?
+    var time_solved: String?
+    var created_at: String
+    var updated_at: String
+}
+
+struct IncidentImage: Codable {
+    var uploaded_image_id: String
+    var url: String
+    var content_type: String
+}
+
+struct IncidentResponse: Codable {
+    var items: [Incident]
+    var total: Int
+    var page: Int
+    var size: Int
+    var pages: Int
 }
 
 // ------ Incidents

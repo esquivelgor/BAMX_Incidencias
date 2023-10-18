@@ -212,7 +212,7 @@ class Webservice {
     }
     
     func getTickets(access_token: String, completion: @escaping (Result<IncidentResponse, NetworkError>) -> Void) {
-        guard let url = URL(string: "https://food-bank-api.onrender.com/requests") else {
+        guard let url = URL(string: "https://food-bank-api.onrender.com/tickets") else {
             completion(.failure(.invalidURL))
             return
         }
@@ -241,6 +241,7 @@ class Webservice {
             }
         }.resume()
     }
+
     // Patch
     
     func patchRequests(access_token: String, state: String,_id: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
