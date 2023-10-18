@@ -11,8 +11,8 @@ class LoginViewModel: ObservableObject {
     
     var username: String = ""
     var password: String = ""
-    @Published var isAuthenticated: Bool = false
     
+    @Published var isAuthenticated: Bool = false
     @Published var invalid: Bool = false
     @Published var loginAlert: Bool = false
     @Published var passwordAlert: Bool = false

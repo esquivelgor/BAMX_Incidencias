@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthentificationView: View {
     @State private var isShowingDetailView = false
-    @StateObject var loginVM = LoginViewModel()
+    @EnvironmentObject var loginVM : LoginViewModel
     
     @State private var showLoginAlert = false
     @State private var showPasswordAlert = false

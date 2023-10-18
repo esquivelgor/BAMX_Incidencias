@@ -13,9 +13,15 @@ struct SplashScreenView: View {
     @State private var size = 0.4
     @State private var opacity = 0.5
     
+    @StateObject var loginVM = LoginViewModel()
+    
     var body: some View {
         if isActive {
-            AuthentificationView()
+            if UserDefaults.standard.string(forKey: "access_token") != nil {
+                AppHome().environmentObject(loginVM)
+            } else {
+                AuthentificationView().environmentObject(loginVM)
+            }
         } else {
             ZStack{
                 Image("bg")
