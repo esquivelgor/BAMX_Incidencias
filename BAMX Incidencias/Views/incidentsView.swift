@@ -121,21 +121,21 @@ struct incidentsView: View {
                                                     title: Text("Enviado!"),
                                                     message: Text("Solicitud enviada con éxito, espera tu confirmación!"),
                                                     dismissButton: .default(
-                                                        Text("Okay"),
-                                                        action: {
-                                                            navigateToAppHome = true
-                                                            // Perform any action upon dismissing the alert if needed
-                                                        })
+                                                        Text("Okay"))//,
+                                                        //action: {
+                                                        //    navigateToAppHome = true
+                                                        //    // Perform any action upon dismissing the alert if needed
+                                                        //})
                                                 )
                                                 
                                             }
                                         }
                                         
-                                        NavigationLink(
-                                            destination: AppHome(),
-                                            isActive: $navigateToAppHome,
-                                            label: { EmptyView() }
-                                        )
+                                        //NavigationLink(
+                                        //    destination: AppHome(),
+                                        //    isActive: $navigateToAppHome,
+                                        //    label: { EmptyView() }
+                                        //)
                                         Spacer()
                                         
                                     }
