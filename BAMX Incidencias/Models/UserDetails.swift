@@ -7,6 +7,31 @@
 
 import Foundation
 
+// Users
+
+struct UsersData: Codable {
+    var items: [Users]
+    var total: Int
+    var page: Int
+    var size: Int
+    var pages: Int
+}
+
+struct Users: Codable {
+    var _id: String
+    var first_name: String
+    var last_name: String
+    var email: String
+    var role: String
+    var identification: String
+    var password: String
+    var created_by: String? // This can be nil
+    var last_login: String
+    var created_at: String
+    var updated_at: String
+}
+
+
 // ----------------- User -----------------
 
 struct UserResponse: Codable {

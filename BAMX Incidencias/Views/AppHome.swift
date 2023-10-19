@@ -10,10 +10,18 @@ import SwiftUI
 struct AppHome: View {
     
     @EnvironmentObject var loginVM : LoginViewModel
-
+    
     @State private var isShowingSheet = false
     @State private var showMenu: Bool = false
     @State private var showFloatingMenu: Bool = true
+    
+    @State private var isExpandedHigh: Bool = false
+    @State private var isExpandedMedium: Bool = false
+    @State private var isExpandedLow: Bool = false
+    
+    @State private var isExpandedPending: Bool = false
+    @State private var isExpandedApproved: Bool = false
+    @State private var isExpandedRejected: Bool = false
     
     @StateObject var getRequestsVM = GetRequestsViewModel()
     @StateObject var getTicketsVM = GetTicketsViewModel()
@@ -21,7 +29,8 @@ struct AppHome: View {
     @State private var selectedItemId: String?
     @State private var selectedTitle: String?
     @State private var selectedDescription: String?
-    
+
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -31,65 +40,86 @@ struct AppHome: View {
                         .fontWeight(.bold)
                         .foregroundColor(Color(hex: 0xE2032C))
                         .padding(20)
-                    
-                    Divider()
-                    
+
+                    //Divider()
+   
                     List {
-                        Section(header: Text("Urgencia alta").font(.headline)) {
-                            ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "high"} ?? [], id: \._id) { item in
-                                    NavigationLink(destination: CreatedIncidenciaView(item: item)) {
-                                        IncidentRowView(item: item)
+                        VStack(alignment: .leading) {
+                            DisclosureGroup(isExpanded: $isExpandedHigh) {
+                                ScrollView(.vertical, showsIndicators: false) {
+                                    ForEach(getTicketsVM.incidentResponse?.items.filter { $0.urgency == "high" } ?? [], id: \._id) { item in
+                                        NavigationLink(destination: CreatedIncidenciaView(item: item)) {
+                                            IncidentRowView(item: item)
+                                        }
+                                        .buttonStyle(.plain)
+                                        Rectangle()
+                                            .frame(height: 0.5)
+                                            .foregroundColor(Color.black)
                                     }
-                                    .buttonStyle(.plain)
-                                    Rectangle()
-                                        .frame(height: 0.5)
-                                        .foregroundColor(Color.black)
                                 }
+                                .frame(height: isExpandedHigh ? 120 : 0)
+                            }label: {
+                            Text("Urgencia Alta")
+                                .font(.headline)
+                                .foregroundColor(Color.black)
                             }
-                            .frame(height: 120)
-                        }
-                        Section(header: Text("Urgencia media").font(.headline)) {
-                            ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "medium"} ?? [], id: \._id) { item in
-                                    NavigationLink(destination: CreatedIncidenciaView(item: item)) {
-                                        IncidentRowView(item: item)
+                            .accentColor(Color.red)
+
+                            DisclosureGroup(isExpanded: $isExpandedMedium) {
+                                ScrollView(.vertical, showsIndicators: false) {
+                                    ForEach(getTicketsVM.incidentResponse?.items.filter { $0.urgency == "medium" } ?? [], id: \._id) { item in
+                                        NavigationLink(destination: CreatedIncidenciaView(item: item)) {
+                                            IncidentRowView(item: item)
+                                        }
+                                        .buttonStyle(.plain)
+                                        Rectangle()
+                                            .frame(height: 0.5)
+                                            .foregroundColor(Color.black)
                                     }
-                                    .buttonStyle(.plain)
-                                    Rectangle()
-                                        .frame(height: 0.5)
-                                        .foregroundColor(Color.black)
                                 }
+                                .frame(height: isExpandedMedium ? 120 : 0)
+                            }label: {
+                            Text("Urgencia Media")
+                                .font(.headline)
+                                .foregroundColor(Color.black)
                             }
-                            .frame(height: 120)
-                        }
-                        Section(header: Text("Urgencia baja").font(.headline)) {
-                            ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "low"} ?? [], id: \._id) { item in
-                                    NavigationLink(destination: CreatedIncidenciaView(item: item)) {
-                                        IncidentRowView(item: item)
+                            .accentColor(Color.red)
+
+                            DisclosureGroup(isExpanded: $isExpandedLow) {
+                                ScrollView(.vertical, showsIndicators: false) {
+                                    ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "low"} ?? [], id: \._id) { item in
+                                        NavigationLink(destination: CreatedIncidenciaView(item: item)) {
+                                            IncidentRowView(item: item)
+                                        }
+                                        .buttonStyle(.plain)
+                                        Rectangle()
+                                            .frame(height: 0.5)
+                                            .foregroundColor(Color.black)
                                     }
-                                    .buttonStyle(.plain)
-                                    Rectangle()
-                                        .frame(height: 0.5)
-                                        .foregroundColor(Color.black)
                                 }
+                                .frame(height: isExpandedLow ? 120 : 0)
+                            }label: {
+                            Text("Urgencia Baja")
+                                .font(.headline)
+                                .foregroundColor(Color.black)
                             }
-                            .frame(height: 120)
+                            .accentColor(Color.red)
+
                         }
-                        
                     }
+                    
                     .onAppear(perform: getTicketsVM.getTickets)
-                    .frame(height: 300)
+                    .frame(height: 275)
+                   
                     //.sheet(isPresented: $isShowingSheet) {
                     //    if let itemId = selectedItemId {
                     //        SheetView(itemId: itemId, title: selectedTitle ?? "Null", description: selectedDescription ?? "Null", isPresented: $isShowingSheet)
                     //    }
                     //}
                     
-                    Spacer()
+                    //Spacer()
                     Divider()
-                    Spacer()
+                    //Spacer()
                     
                     Text("Solicitudes")
                         .font(.title)
@@ -98,58 +128,72 @@ struct AppHome: View {
                         .padding(20)
                     
                     Divider()
-                    
+
                     List {
-                        Section(header: Text("Pendientes").font(.headline)) {
-                            ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(getRequestsVM.requestData?.items.filter { $0.state == "pending" } ?? [], id: \._id) { item in
-                                    RequestsRowView(item: item)
-                                        .onTapGesture {
-                                            selectedItemId = item._id
-                                            selectedTitle = item.title
-                                            selectedDescription = item.description
-                                            isShowingSheet = true
-                                        }
-                                    Rectangle()
-                                        .frame(height: 0.5)
-                                        .foregroundColor(Color.black)
+                        VStack(alignment: .leading) {
+                            DisclosureGroup(isExpanded: $isExpandedPending) {
+                                ScrollView(.vertical, showsIndicators: false) {
+                                    ForEach(getRequestsVM.requestData?.items.filter { $0.state == "pending" } ?? [], id: \._id) { item in
+                                        RequestsRowView(item: item)
+                                            .onTapGesture {
+                                                selectedItemId = item._id
+                                                selectedTitle = item.title
+                                                selectedDescription = item.description
+                                                isShowingSheet = true
+                                            }
+                                        Rectangle()
+                                            .frame(height: 0.5)
+                                            .foregroundColor(Color.black)
+                                    }
                                 }
-                            }
-                            .frame(height: 150)
-                        }
-                        
-                        Section(header: Text("Aprobadas").font(.headline)) {
-                            ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(getRequestsVM.requestData?.items.filter { $0.state == "approved" } ?? [], id: \._id) { item in
-                                    RequestsRowView(item: item)
-                                    Rectangle()
-                                        .frame(height: 0.5)
-                                        .foregroundColor(Color.black)
+                                .frame(height: isExpandedPending ? 150 : 0)
+                            }label: {
+                                Text("Pendientes")
+                                    .font(.headline)
+                                    .foregroundColor(Color.black)
+                            }.accentColor(Color.red)
+                            
+                            DisclosureGroup(isExpanded: $isExpandedApproved) {
+                                ScrollView(.vertical, showsIndicators: false) {
+                                    ForEach(getRequestsVM.requestData?.items.filter { $0.state == "approved" } ?? [], id: \._id) { item in
+                                        RequestsRowView(item: item)
+                                        Rectangle()
+                                            .frame(height: 0.5)
+                                            .foregroundColor(Color.black)
+                                    }
                                 }
-                            }
-                            .frame(height: 150)
-                        }
-                        
-                        Section(header: Text("Rechazadas").font(.headline)) {
-                            ScrollView(.vertical, showsIndicators: false) {
-                                ForEach(getRequestsVM.requestData?.items.filter { $0.state == "rejected" } ?? [], id: \._id) { item in
-                                    RequestsRowView(item: item)
-                                    Rectangle()
-                                        .frame(height: 0.5)
-                                        .foregroundColor(Color.black)
+                                .frame(height: isExpandedApproved ? 150 : 0)
+                            }label: {
+                                Text("Aprobadas")
+                                    .font(.headline)
+                                    .foregroundColor(Color.black)
+                            }.accentColor(Color.red)
+                            
+                            DisclosureGroup(isExpanded: $isExpandedRejected) {
+                                ScrollView(.vertical, showsIndicators: false) {
+                                    ForEach(getRequestsVM.requestData?.items.filter { $0.state == "rejected" } ?? [], id: \._id) { item in
+                                        RequestsRowView(item: item)
+                                        Rectangle()
+                                            .frame(height: 0.5)
+                                            .foregroundColor(Color.black)
+                                    }
                                 }
-                            }
-                            .frame(height: 150)
+                                .frame(height: isExpandedRejected ? 150 : 0)
+                            }label: {
+                                Text("Rechazadas")
+                                    .font(.headline)
+                                    .foregroundColor(Color.black)
+                            }.accentColor(Color.red)
                         }
                     }
-                    .onAppear(perform: getRequestsVM.getRequests)
                     .frame(height: 250)
                     .sheet(isPresented: $isShowingSheet) {
                         if let itemId = selectedItemId {
                             SheetView(itemId: itemId, title: selectedTitle ?? "Null", description: selectedDescription ?? "Null", isPresented: $isShowingSheet)
                         }
                     }
-                    
+                    .onAppear(perform: getRequestsVM.getRequests)
+
                     Spacer()
                     
                 }
@@ -176,7 +220,7 @@ struct AppHome: View {
                             .padding()
                     }
                 }
-            }
+            } .background(Color.white)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 Button {
@@ -200,6 +244,7 @@ struct AppHome: View {
         .navigationBarBackButtonHidden(true)
         
     }
+        
     
     struct RequestsRowView: View {
         let item: Requests

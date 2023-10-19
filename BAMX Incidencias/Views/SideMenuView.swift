@@ -29,15 +29,15 @@ struct SideMenuView: View {
             }
             .font(.title)
             .foregroundColor(.white)
-            NavigationLink(destination: NotificationsView()){
-                
-                HStack {
-                    Image(systemName: "bell.fill")
-                    Text("Notificaciones")
-                }
-            }
-            .font(.title)
-            .foregroundColor(.white)
+            //NavigationLink(destination: NotificationsView()){
+            //
+            //    HStack {
+            //        Image(systemName: "bell.fill")
+            //        Text("Notificaciones")
+            //    }
+            //}
+            //.font(.title)
+            //.foregroundColor(.white)
             
             NavigationLink(destination: incidentsView()){
                 HStack {

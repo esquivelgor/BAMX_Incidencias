@@ -19,6 +19,9 @@ struct CreatedIncidenciaView: View {
     
     @State private var solution: String = ""
     
+    @State private var selectedUserID: String?
+    @StateObject var getUsersVM = GetUsersViewModel()
+    
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
@@ -121,9 +124,29 @@ struct CreatedIncidenciaView: View {
                                     
                                     Divider()
                                     
-                                    TextField("Solución", text: $solution)
-                                        .textFieldStyle(.roundedBorder)
-                                        .padding()
+                                    Text("Solucion")
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color(hex: 0xE2032C))
+                                        .padding(.top, 20)
+                                    
+                                    HStack {
+                                        Text("Empleado asignado: ")
+                                        Picker("Categoria", selection: $selectedUserID) {
+                                            ForEach(getUsersVM.usersData?.items ?? [], id: \._id) { user in
+                                                Text(user.first_name).tag(user._id)
+                                            }
+                                        }
+                                    }
+                                    .onAppear(perform: getUsersVM.getUsers)
+                                    
+                                    HStack {
+                                        Text("Descripcion: ")
+                                        TextField("Escribe algo", text: $solution)
+                                            .textFieldStyle(.roundedBorder)
+                                            .padding()
+                                    }
+                                    
                                     Button("Resolver incidencia", action: {
                                         isEditing.toggle()
                                     })
