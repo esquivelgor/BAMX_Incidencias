@@ -186,14 +186,14 @@ struct AppHome: View {
                             }.accentColor(Color.red)
                         }
                     }
-                    .onAppear(perform: getRequestsVM.getRequests)
                     .frame(height: 250)
                     .sheet(isPresented: $isShowingSheet) {
                         if let itemId = selectedItemId {
                             SheetView(itemId: itemId, title: selectedTitle ?? "Null", description: selectedDescription ?? "Null", isPresented: $isShowingSheet)
                         }
                     }
-                    
+                    .onAppear(perform: getRequestsVM.getRequests)
+
                     Spacer()
                     
                 }

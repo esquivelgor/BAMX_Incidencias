@@ -35,18 +35,18 @@ struct AccountView: View {
                                 AccountRow(label: "Rol", value: meVM.meDetails?.role ?? "Empty", isEditable: false)
                                 AccountRow(label: "Correo", value: meVM.meDetails?.email ?? "Empty", isEditable: false)
                                 
-                                VStack(alignment: .center) {
-                                    Button(action: {
-                                        // Handle password change here
-                                    }) {
-                                        Text("Cambiar Contraseña")
-                                    }
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .background(Color(hex: 0xE2032C))
-                                    .cornerRadius(20)
-                                    .padding(.top, 20)
-                                }
+                                // VStack(alignment: .center) {
+                                //     Button(action: {
+                                //         // Handle password change here
+                                //     }) {
+                                //         Text("Cambiar Contraseña")
+                                //     }
+                                //     .foregroundColor(.white)
+                                //     .padding()
+                                //     .background(Color(hex: 0xE2032C))
+                                //     .cornerRadius(20)
+                                //     .padding(.top, 20)
+                                // }
                             }
                         }
                         .padding(.horizontal, 16)

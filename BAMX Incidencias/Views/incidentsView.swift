@@ -12,6 +12,7 @@ struct incidentsView: View {
     
     @State private var pictures = ""
     @State private var caption = ""
+    @State private var navigateToAppHome = false
     
     @State private var showAlert = false
     @State private var showNegativeAlert = false
@@ -40,9 +41,9 @@ struct incidentsView: View {
                     
                     Form {
                         Section(header: Text("Llene los campos correspondientes")) {
-                            VStack(alignment: .leading) {
-                                Text("Asunto")
-                                TextField("Escribe algo", text: $postTicketVM.topic)
+                            HStack {
+                                Text("Asunto: ")
+                                TextField("", text: $postTicketVM.topic)
                             }
                             VStack(alignment: .leading) {
                                 Picker("Categoria", selection: $postTicketVM.category) {
@@ -88,9 +89,13 @@ struct incidentsView: View {
                             //     //ImagePicker(sourceType: .camera, selectedImage: self.$image)
                             //
                             // }
+                            
+                            HStack {
+                                Text("Descripcion: ")
+                                TextField("", text: $postTicketVM.description)
+                            }
+                            
                             VStack (alignment: .leading) {
-                                Text("Descripcion")
-                                TextField("Escribe algo", text: $postTicketVM.description)
                                 Section {
                                     VStack {
                                         Spacer()
@@ -115,11 +120,22 @@ struct incidentsView: View {
                                                 return Alert(
                                                     title: Text("Enviado!"),
                                                     message: Text("Solicitud enviada con éxito, espera tu confirmación!"),
-                                                    dismissButton: .default(Text("Okay"))
+                                                    dismissButton: .default(
+                                                        Text("Okay"),
+                                                        action: {
+                                                            navigateToAppHome = true
+                                                            // Perform any action upon dismissing the alert if needed
+                                                        })
                                                 )
+                                                
                                             }
                                         }
                                         
+                                        NavigationLink(
+                                            destination: AppHome(),
+                                            isActive: $navigateToAppHome,
+                                            label: { EmptyView() }
+                                        )
                                         Spacer()
                                         
                                     }
