@@ -9,13 +9,21 @@ import Foundation
 
 class PostTicketModel: ObservableObject {
     
-    var topic: String = ""
-    var category: String = ""
-    var description: String = ""
-    var urgency: String = ""
-    
+    @Published var topic: String = ""
+    @Published var category: String = "Seleccionar"
+    @Published var description: String = ""
+    @Published var urgency: String = "Seleccionar"
+    var categories = ["Seleccionar","tecnic", "logistic", "administrative"]
+    var priorities = ["Seleccionar","low", "medium", "high"]
+
     func postTicket() {
-        Webservice().postTicket(topic: topic, category: category, description: description, urgency: urgency){ result in
+        
+        let defaults = UserDefaults.standard
+        guard let access_token = defaults.string(forKey: "access_token") else {
+            return
+        }
+        
+        Webservice().postTicket(access_token: access_token, topic: topic, category: category, description: description, urgency: urgency){ result in
             switch result {
             case .success(let response):
                 print("Email sent successfully. Response: \(response)")

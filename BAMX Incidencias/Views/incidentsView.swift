@@ -6,187 +6,162 @@
 //
 
 import SwiftUI
-
 import Foundation
-
 
 struct incidentsView: View {
     
-    @State private var topic = ""
-    @State private var category = ""
-    @State private var priority = ""
     @State private var pictures = ""
-    @State private var description = ""
     @State private var caption = ""
     
     @State private var showAlert = false
     @State private var showNegativeAlert = false
-    
-    @State private var selectedCategory = "Seleccionar"
-    let categories = ["Seleccionar","Tecnica", "Logistica", "Administrativa"]
-    
-    @State private var selectedPriority = "Seleccionar"
-    let priorities = ["Seleccionar","Baja", "Media", "Alta"]
-    
-    @State private var image = UIImage()
+    @State private var showMenu: Bool = false
     @State private var showSheet = false
+    @State private var image = UIImage()
     
     @StateObject var postTicketVM = PostTicketModel()
-
+    
     private var isFormValid: Bool {
-        return !topic.isEmpty
+        return (!postTicketVM.topic.isEmpty && !postTicketVM.category.isEmpty && !postTicketVM.description.isEmpty && !postTicketVM.urgency.isEmpty)
     }
     
-    @State private var showMenu: Bool = false
     var body: some View {
         NavigationView {
-        
-        ZStack {
-            VStack (alignment: .leading) {
-                Text("Nueva Incidencia")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(hex: 0xE2032C))
-                    .padding(.top, 20)
-                    .padding(.leading, 20)
-                
-                Divider()
-                Form {
-                    Section(header: Text("Llene los campos correspondientes")) {
-                        VStack(alignment: .leading) {
-                            Text("Asunto")
-                            TextField("Asunto", text: $postTicketVM.topic)
-                        }
-                        VStack(alignment: .leading) {
-                            Picker("Categoria", selection: $selectedCategory) {
-                                ForEach(categories, id: \.self) { category in
-                                    Text(category)
-                                }
+            ZStack {
+                VStack (alignment: .leading) {
+                    Text("Nueva Incidencia")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color(hex: 0xE2032C))
+                        .padding(.top, 20)
+                        .padding(.leading, 20)
+                    
+                    Divider()
+                    
+                    Form {
+                        Section(header: Text("Llene los campos correspondientes")) {
+                            VStack(alignment: .leading) {
+                                Text("Asunto")
+                                TextField("Escribe algo", text: $postTicketVM.topic)
                             }
-                            Text(postTicketVM.category)
-                        }
-
-
-                        VStack(alignment: .leading) {
-                            Picker("Prioridad", selection: $selectedPriority) {
-                                ForEach(priorities, id: \.self) { priority in
-                                    Text(priority)
-                                }
-                            }
-                            Text(postTicketVM.urgency)
-                        }
-
-                        
-                        
-                        HStack {
-                            Image(uiImage: self.image)
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                                .background(Color.black.opacity(0.2))
-                                .aspectRatio(contentMode: .fill)
-                            
-                            Text("Adjuntar archivo")
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 30)
-                                .background(Color(hex: 0xE2032C))
-                            
-                                .cornerRadius(16)
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 10)
-                                .onTapGesture {
-                                    showSheet = true
-                                }
-                        }
-                        .padding(.horizontal, 20)
-                        .sheet(isPresented: $showSheet) {
-                            // To take the picture from the library
-                            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
-                            
-                            //  If you wish to take a photo from camera instead:
-                            //ImagePicker(sourceType: .camera, selectedImage: self.$image)
-                            
-                        }
-                        TextField("Descripcion", text: $postTicketVM.description)
-                        Section {
-                            VStack {
-                                Spacer()
-                                Button("Enviar") {
-                                    if isFormValid {
-                                        showAlert = true
-                                        showNegativeAlert = false
-                                        postTicketVM.postTicket()
-                                        print("a")
-                                    } else {
-                                        showAlert = true
-                                        showNegativeAlert = true
-                                        print("b")
+                            VStack(alignment: .leading) {
+                                Picker("Categoria", selection: $postTicketVM.category) {
+                                    ForEach(postTicketVM.categories, id: \.self) {
+                                        Text($0)
                                     }
                                 }
-                                .buttonStyle(.borderedProminent)
-                                .tint(Color(hex: 0xE2032C))
-                                .cornerRadius(50)
-                                .frame(maxWidth: .infinity, alignment: .center) // Center-align the button vertically
-                                
-                                Spacer()
                             }
-                        }
-                    }
-                    .alert(isPresented: $showAlert) {
-                        if showNegativeAlert {
-                            return Alert(
-                                title: Text("Error!"),
-                                message: Text("Revisa tus datos nuevamente, algo no está bien!"),
-                                dismissButton: .default(Text("Okay"))
-                            )
-                        } else {
-                            return Alert(
-                                title: Text("Enviado!"),
-                                message: Text("Solicitud enviada con éxito, espera tu confirmación!"),
-                                dismissButton: .default(Text("Okay"))
-                            )
+                            
+                            VStack(alignment: .leading) {
+                                Picker("Prioridad", selection: $postTicketVM.urgency) {
+                                    ForEach(postTicketVM.priorities, id: \.self) {
+                                        Text($0)
+                                    }
+                                }
+                            }
+                            
+                            // HStack {
+                            //     Image(uiImage: self.image)
+                            //         .resizable()
+                            //         .frame(width: 100, height: 100)
+                            //         .background(Color.black.opacity(0.2))
+                            //         .aspectRatio(contentMode: .fill)
+                            //
+                            //     Text("Adjuntar archivo")
+                            //         .frame(maxWidth: .infinity)
+                            //         .frame(height: 30)
+                            //         .background(Color(hex: 0xE2032C))
+                            //
+                            //         .cornerRadius(16)
+                            //         .foregroundColor(.white)
+                            //         .padding(.horizontal, 10)
+                            //         .onTapGesture {
+                            //             showSheet = true
+                            //         }
+                            // }
+                            // .padding(.horizontal, 20)
+                            // .sheet(isPresented: $showSheet) {
+                            //     // To take the picture from the library
+                            //     ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                            //
+                            //     //  If you wish to take a photo from camera instead:
+                            //     //ImagePicker(sourceType: .camera, selectedImage: self.$image)
+                            //
+                            // }
+                            VStack (alignment: .leading) {
+                                Text("Descripcion")
+                                TextField("Escribe algo", text: $postTicketVM.description)
+                                Section {
+                                    VStack {
+                                        Spacer()
+                                        Button("Enviar") {
+                                            if isFormValid {
+                                                postTicketVM.postTicket()
+                                            }
+                                            showAlert = true
+                                        }
+                                        .buttonStyle(.borderedProminent)
+                                        .tint(Color(hex: 0xE2032C))
+                                        .cornerRadius(50)
+                                        .frame(maxWidth: .infinity, alignment: .center) // Center-align the button vertically
+                                        .alert(isPresented: $showAlert) {
+                                            if !isFormValid {
+                                                return Alert(
+                                                    title: Text("Error!"),
+                                                    message: Text("Revisa tus datos nuevamente, algo no está bien!"),
+                                                    dismissButton: .default(Text("Okay"))
+                                                )
+                                            } else {
+                                                return Alert(
+                                                    title: Text("Enviado!"),
+                                                    message: Text("Solicitud enviada con éxito, espera tu confirmación!"),
+                                                    dismissButton: .default(Text("Okay"))
+                                                )
+                                            }
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-            }
+                
+                GeometryReader { _ in
                     
-            
-          GeometryReader { _ in
-            
-            HStack {
-              Spacer()
-              
-              SideMenuView()
-                .offset(x: showMenu ? 0 : UIScreen.main.bounds.width)
-                .animation(.easeInOut(duration: 0.4), value: showMenu)
+                    HStack {
+                        
+                        Spacer()
+                        
+                        SideMenuView()
+                            .offset(x: showMenu ? 0 : UIScreen.main.bounds.width)
+                            .animation(.easeInOut(duration: 0.4), value: showMenu)
+                    }
+                }
+                .background(Color.black.opacity(showMenu ? 0.5 : 0))
             }
-            
-          }
-          .background(Color.black.opacity(showMenu ? 0.5 : 0))
-          
-        }
-        
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-          
-          Button {
-            self.showMenu.toggle()
-          } label: {
-            
-            if showMenu {
-              
-              Image(systemName: "xmark")
-                .font(.title)
-                .foregroundColor(.white)
-              
-            } else {
-              Image(systemName: "text.justify")
-                .font(.title)
-                .foregroundColor(Color(hex: 0xE2032C))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                
+                Button {
+                    self.showMenu.toggle()
+                } label: {
+                    
+                    if showMenu {
+                        Image(systemName: "xmark")
+                            .font(.title)
+                            .foregroundColor(.white)
+                        
+                    } else {
+                        Image(systemName: "text.justify")
+                            .font(.title)
+                            .foregroundColor(Color(hex: 0xE2032C))
+                    }
+                }
             }
-            
-          }
         }
-      }
         .navigationBarBackButtonHidden(true)
     }
 }

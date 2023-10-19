@@ -37,15 +37,15 @@ struct UpdateRequestBody: Codable {
 }
 
 struct TicketRequestBody: Codable {
-    let topic: String
-    let category: String
+    let title: String
     let description: String
     let urgency: String
+    let category: String
 }
 
 class Webservice {
     
-    // Post
+    // ----------------------------------- POST Requests --------------------------------------
     
     func login(username: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         guard let url = URL(string: "https://food-bank-api.onrender.com/login") else {
@@ -80,50 +80,38 @@ class Webservice {
             completion(.success(token))
         } .resume()
     }
+    func postTicket(access_token: String, topic: String, category: String, description: String, urgency: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
+        guard let url = URL(string: "https://food-bank-api.onrender.com/tickets") else {
+            completion(.failure(.invalidURL))
+            return
+        }
     
-    func postTicket(topic: String, category: String, description: String, urgency: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
-            guard let url = URL(string: "https://food-bank-api.onrender.com/tickets") else {
-                completion(.failure(.invalidURL))
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+    
+        request.setValue(
+            "application/json;charset=utf-8",
+            forHTTPHeaderField: "Content-Type"
+        )
+        let body = TicketRequestBody(title: topic, description: description, urgency: urgency, category: category)
+        request.httpBody = try? JSONEncoder().encode(body)
+        
+        URLSession.shared.dataTask(with: request) { _, response, error in
+            if error != nil {
+                completion(.failure(NetworkError.decodingError))
                 return
             }
-            
-        let body = TicketRequestBody(topic: topic, category: category, description: description, urgency: urgency)
-        
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
-        
-            request.setValue(
-                "application/json;charset=utf-8",
-                forHTTPHeaderField: "Content-Type"
-            )
-        request.httpBody = try? JSONEncoder().encode(body)
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
-        
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    completion(.failure(.custom(errorMessage: "No HTTP response")))
-                    return
-                }
-                
-                if let data = data {
-                    let responseString = String(data: data, encoding: .utf8)
-                    print("Response Data: \(responseString ?? "Empty")")
-                }
-                        
-                if httpResponse.statusCode == 200 {
-                    completion(.success((httpResponse.statusCode)))
-                    print("Success! \(httpResponse.statusCode)")
-                } else {
-                    completion(.failure(.custom(errorMessage: "Wrong statusCode \(httpResponse.statusCode)")))
-                }
-        
-                completion(.success(httpResponse.statusCode))
-            }.resume()
+    
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(NetworkError.decodingError))
+                return
+            }
+    
+            completion(.success(httpResponse.statusCode))
+        }.resume()
+    
     }
-        
-        
-    // Get
     
     func sendEmail(email: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         guard let url = URL(string: "https://food-bank-api.onrender.com/requests/auth") else {
@@ -159,6 +147,8 @@ class Webservice {
             
         } .resume()
     }
+    
+    // ----------------------------------- GET Requests --------------------------------------
     
     func getMe(access_token: String, completion: @escaping (Result<MeDetails, NetworkError>) -> Void) {
         guard let url = URL(string: "https://food-bank-api.onrender.com/me") else {
