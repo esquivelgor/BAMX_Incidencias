@@ -31,11 +31,12 @@ struct AppHome: View {
                         .fontWeight(.bold)
                         .foregroundColor(Color(hex: 0xE2032C))
                         .padding(20)
+
                     
                     Divider()
                     
                     List {
-                        Section(header: Text("Urgencia alta").font(.headline)) {
+                        Section(header: Text("Urgencia alta").font(.headline).foregroundColor(Color.black)) {
                             ScrollView(.vertical, showsIndicators: false) {
                                 ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "high"} ?? [], id: \._id) { item in
                                     NavigationLink(destination: CreatedIncidenciaView(item: item)) {
@@ -48,8 +49,8 @@ struct AppHome: View {
                                 }
                             }
                             .frame(height: 120)
-                        }
-                        Section(header: Text("Urgencia media").font(.headline)) {
+                        }.accentColor(Color.red)
+                        Section(header: Text("Urgencia media").font(.headline).foregroundColor(Color.black)) {
                             ScrollView(.vertical, showsIndicators: false) {
                                 ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "medium"} ?? [], id: \._id) { item in
                                     NavigationLink(destination: CreatedIncidenciaView(item: item)) {
@@ -62,8 +63,8 @@ struct AppHome: View {
                                 }
                             }
                             .frame(height: 120)
-                        }
-                        Section(header: Text("Urgencia baja").font(.headline)) {
+                        }.accentColor(Color.red)
+                        Section(header: Text("Urgencia baja").font(.headline).foregroundColor(Color.black)) {
                             ScrollView(.vertical, showsIndicators: false) {
                                 ForEach(getTicketsVM.incidentResponse?.items.filter {$0.urgency == "low"} ?? [], id: \._id) { item in
                                     NavigationLink(destination: CreatedIncidenciaView(item: item)) {
@@ -76,11 +77,11 @@ struct AppHome: View {
                                 }
                             }
                             .frame(height: 120)
-                        }
+                        }.accentColor(Color.red)
                         
                     }
                     .onAppear(perform: getTicketsVM.getTickets)
-                    .frame(height: 300)
+                    .frame(height: 275)
                     //.sheet(isPresented: $isShowingSheet) {
                     //    if let itemId = selectedItemId {
                     //        SheetView(itemId: itemId, title: selectedTitle ?? "Null", description: selectedDescription ?? "Null", isPresented: $isShowingSheet)
@@ -100,7 +101,7 @@ struct AppHome: View {
                     Divider()
                     
                     List {
-                        Section(header: Text("Pendientes").font(.headline)) {
+                        Section(header: Text("Pendientes").font(.headline).foregroundColor(Color.black)) {
                             ScrollView(.vertical, showsIndicators: false) {
                                 ForEach(getRequestsVM.requestData?.items.filter { $0.state == "pending" } ?? [], id: \._id) { item in
                                     RequestsRowView(item: item)
@@ -116,9 +117,9 @@ struct AppHome: View {
                                 }
                             }
                             .frame(height: 150)
-                        }
+                        }.accentColor(Color.red)
                         
-                        Section(header: Text("Aprobadas").font(.headline)) {
+                        Section(header: Text("Aprobadas").font(.headline).foregroundColor(Color.black)) {
                             ScrollView(.vertical, showsIndicators: false) {
                                 ForEach(getRequestsVM.requestData?.items.filter { $0.state == "approved" } ?? [], id: \._id) { item in
                                     RequestsRowView(item: item)
@@ -128,9 +129,9 @@ struct AppHome: View {
                                 }
                             }
                             .frame(height: 150)
-                        }
+                        }.accentColor(Color.red)
                         
-                        Section(header: Text("Rechazadas").font(.headline)) {
+                        Section(header: Text("Rechazadas").font(.headline).foregroundColor(Color.black)) {
                             ScrollView(.vertical, showsIndicators: false) {
                                 ForEach(getRequestsVM.requestData?.items.filter { $0.state == "rejected" } ?? [], id: \._id) { item in
                                     RequestsRowView(item: item)
@@ -140,7 +141,7 @@ struct AppHome: View {
                                 }
                             }
                             .frame(height: 150)
-                        }
+                        }.accentColor(Color.red)
                     }
                     .onAppear(perform: getRequestsVM.getRequests)
                     .frame(height: 250)

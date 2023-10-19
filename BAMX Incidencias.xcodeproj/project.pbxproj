@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A08EB312AE09DB700D51A1B /* PostTicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A08EB302AE09DB700D51A1B /* PostTicketModel.swift */; };
 		1A4BE6172AD0EC0D009D8957 /* CreatedIncidenciaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4BE6162AD0EC0D009D8957 /* CreatedIncidenciaView.swift */; };
 		1A6A9D082ACB635600A17D23 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A9D072ACB635600A17D23 /* ImagePicker.swift */; };
 		1A737B2D2ABD50B6003180A2 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A737B2C2ABD50B6003180A2 /* SideMenuView.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A08EB302AE09DB700D51A1B /* PostTicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTicketModel.swift; sourceTree = "<group>"; };
 		1A4BE6162AD0EC0D009D8957 /* CreatedIncidenciaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedIncidenciaView.swift; sourceTree = "<group>"; };
 		1A6A9D072ACB635600A17D23 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		1A737B2C2ABD50B6003180A2 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				BB119B152AAAA72900F0E450 /* LoginViewModel.swift */,
+				1A08EB302AE09DB700D51A1B /* PostTicketModel.swift */,
 				BBD473D72AD785E400C4307A /* GetMeModel.swift */,
 				1A6A9D072ACB635600A17D23 /* ImagePicker.swift */,
 				BB781C052ACF701A0089BA07 /* GetEmailModel.swift */,
@@ -259,6 +262,7 @@
 				1AEFCE632AC8AEF3001567BF /* FloatingMenu.swift in Sources */,
 				BB0CEB8B2ADE269A0088C6C0 /* PatchRequestsModel.swift in Sources */,
 				1AEFCE652AC8B7EA001567BF /* incidentsView.swift in Sources */,
+				1A08EB312AE09DB700D51A1B /* PostTicketModel.swift in Sources */,
 				78F0F58C2A9BEE3F00D44B7B /* SplashScreenView.swift in Sources */,
 				BBD473D62AD7772300C4307A /* WebService.swift in Sources */,
 				BBD473D42AD7747000C4307A /* UserDetails.swift in Sources */,

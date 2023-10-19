@@ -9,10 +9,6 @@ import SwiftUI
 
 import Foundation
 
-class WebService {
-    static func postTicket(topic: String, description: String, urgency: String, completion: @escaping (Result<String, Error>) -> Void) {
-    }
-}
 
 struct incidentsView: View {
     
@@ -35,6 +31,8 @@ struct incidentsView: View {
     @State private var image = UIImage()
     @State private var showSheet = false
     
+    @StateObject var postTicketVM = PostTicketModel()
+
     private var isFormValid: Bool {
         return !topic.isEmpty
     }
@@ -57,20 +55,28 @@ struct incidentsView: View {
                     Section(header: Text("Llene los campos correspondientes")) {
                         VStack(alignment: .leading) {
                             Text("Asunto")
-                            TextField("Asunto", text: $topic)
+                            TextField("Asunto", text: $postTicketVM.topic)
                         }
                         VStack(alignment: .leading) {
                             Picker("Categoria", selection: $selectedCategory) {
-                                ForEach(categories, id: \.self) {
-                                    Text($0)
+                                ForEach(categories, id: \.self) { category in
+                                    Text(category)
                                 }
                             }
+                            Text(postTicketVM.category)
                         }
-                        Picker("Prioridad", selection: $selectedPriority) {
-                            ForEach(priorities, id: \.self) {
-                                Text($0)
+
+
+                        VStack(alignment: .leading) {
+                            Picker("Prioridad", selection: $selectedPriority) {
+                                ForEach(priorities, id: \.self) { priority in
+                                    Text(priority)
+                                }
                             }
+                            Text(postTicketVM.urgency)
                         }
+
+                        
                         
                         HStack {
                             Image(uiImage: self.image)
@@ -100,7 +106,7 @@ struct incidentsView: View {
                             //ImagePicker(sourceType: .camera, selectedImage: self.$image)
                             
                         }
-                        TextField("Descripcion", text: $description)
+                        TextField("Descripcion", text: $postTicketVM.description)
                         Section {
                             VStack {
                                 Spacer()
@@ -108,7 +114,7 @@ struct incidentsView: View {
                                     if isFormValid {
                                         showAlert = true
                                         showNegativeAlert = false
-                                        submitTicket()
+                                        postTicketVM.postTicket()
                                         print("a")
                                     } else {
                                         showAlert = true
@@ -122,13 +128,6 @@ struct incidentsView: View {
                                 .frame(maxWidth: .infinity, alignment: .center) // Center-align the button vertically
                                 
                                 Spacer()
-                                Button("Guardar") {
-                                    // Your save logic here
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .tint(Color(hex: 0xFABB02))
-                                .cornerRadius(50)
-                                .frame(maxWidth: .infinity, alignment: .center) // Center-align the button vertically
                             }
                         }
                     }
@@ -189,16 +188,6 @@ struct incidentsView: View {
         }
       }
         .navigationBarBackButtonHidden(true)
-    }
-    func submitTicket() {
-        WebService.postTicket(topic: topic, description: description, urgency: selectedPriority) { result in
-            switch result {
-            case .success(let message):
-                print(message)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
     }
 }
 
