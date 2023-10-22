@@ -37,9 +37,7 @@ Throughout the project's development, we rigorously adhered to the SCRUM methodo
 ## Images:
 
 ### Main Screen
-<img src="img/img1.png" width="220">
-<img src="img/img2.png" width="220">
-<img src="img/img3.png" width="220">
+<img src="img/img1.png" width="220"><img src="img/img2.png" width="220"><img src="img/img3.png" width="220">
 <img src="img/img4.png" width="220">
 <img src="img/img5.png" width="220">
 <img src="img/img6.png" width="220">
