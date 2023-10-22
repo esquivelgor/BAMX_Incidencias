@@ -44,6 +44,4 @@ Throughout the project's development, we rigorously adhered to the SCRUM methodo
 
 ---
 ## Login Screen:
-<img src="img/img7.png" width="220">
-<img src="img/img8.png" width="220">
-<img src="img/img9.png" width="220">
+<img src="img/img7.png" width="220"><img src="img/img8.png" width="220"><img src="img/img9.png" width="220">
